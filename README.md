@@ -1,1 +1,1 @@
-PHP/db-connectを.gitignoreに設定する
+PHP/db-connect.phpを.gitignoreに設定する
