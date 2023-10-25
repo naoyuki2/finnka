@@ -1,4 +1,9 @@
 <?php
+require './common/header.php';
+require './common/db-connect.php';
+
+echo '<p>ログイン画面</p>';
+
 $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -12,20 +17,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         $pdo = new PDO("mysql:host=$server;dbname=$dbname;charset=utf8", $user, $pass);
-        $stmt = $pdo->prepare("SELECT * FROM user WHERE user_name = ? AND password = ?");
-        $stmt->execute([$usernameInput, $passwordInput]);
+        // ユーザー名のみで検索
+        $stmt = $pdo->prepare("SELECT * FROM user WHERE user_name = ?");
+        $stmt->execute([$usernameInput]);
         $result = $stmt->fetch();
 
-        if (!$result) {
-            $errorMessage = "ユーザーネームまたはパスワードが正しくありません。";
-        } else {
+        // password_verify関数を使用してハッシュ化されたパスワードと入力されたパスワードを比較
+        if ($result && password_verify($passwordInput, $result['password'])) {
             header('Location: target_page.php');
             exit;
+        } else {
+            $errorMessage = "ユーザーネームまたはパスワードが正しくありません。";
         }
     } catch (PDOException $e) {
         $errorMessage = "データベースエラー: " . $e->getMessage();
     }
 }
+
+require './common/footer.php';
 ?>
 
 <!DOCTYPE html>
