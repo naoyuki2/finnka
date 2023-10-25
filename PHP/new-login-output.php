@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php require './common/header.php';?>
 <?php require './common/db-connect.php'; ?>
 <?php
     $password_hash = password_hash($_POST['password'],PASSWORD_DEFAULT);
@@ -35,8 +36,5 @@
  echo '<input type="submit" value="戻る">';
  echo '</form>';
 }
-
-
+require './common/footer.php';
 ?>
-</body>
-</html>

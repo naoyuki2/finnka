@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 
 <?php
+require './common/header.php';
 $user_name=$password1=$password2='';
 $error = '';
 if (isset($_SESSION['user'])) {
@@ -59,3 +60,5 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+
+<?php require './common/footer.php';?>
