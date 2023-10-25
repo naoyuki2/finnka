@@ -14,9 +14,9 @@
         $sql->execute([$_POST['user_name']]);
     }
 
-        if(empty($sql->fetchAll())){
+        $sql->fetchAll();
 
-        if ($_POST['password'] !== $_POST['password2']) {
+        if($_POST['password'] !== $_POST['password2']) {
             echo 'パスワードが一致しません。';
             echo '<form action="new-login-input.php" method="post">';
             echo '<input type="submit" value="戻る">';
@@ -30,11 +30,6 @@
             echo '<input type="submit" value="トップページへ">';
             echo '</form>';
         }
-}else{
- echo 'ログイン名が既に使用されていますので、変更してください。';
- echo '<form action="new-login-input.php" method="post">';
- echo '<input type="submit" value="戻る">';
- echo '</form>';
-}
+
 require './common/footer.php';
 ?>
