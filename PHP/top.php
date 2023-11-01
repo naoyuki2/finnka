@@ -1,7 +1,9 @@
-
 <?php
+    session_start();
     require './common/header.php';
     require './common/db-connect.php';
+    $id = $_SESSION['id'];
+    echo '<h1>',$id,'</h1>';
 ?>
 
 <p>おすすめ商品</p>
