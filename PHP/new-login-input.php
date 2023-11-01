@@ -1,7 +1,16 @@
-<?php session_start(); ?>
-
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <?php
 require './common/header.php';
+
+if (isset($_SESSION['error_message'])) {
+    echo '<p class="error-message">' . $_SESSION['error_message'] . '</p>';
+    unset($_SESSION['error_message']); // エラーメッセージを表示したら、セッション変数から削除します
+}
+
 $user_name=$password1=$password2='';
 $error = '';
 if (isset($_SESSION['user'])) {
