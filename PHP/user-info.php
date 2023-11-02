@@ -5,7 +5,7 @@
     $pdo = new PDO ($connect,USER,PASS);
 
         $sql=$pdo->prepare('select * from user where user_name=?');
-        $sql->execute([$_POST['user_name']]);
+        $sql->execute([$_SESSION['id']]);
 
     echo '<form action="user-info-login-input.php" method="post">';
     echo '<tr><td><input type="submit" value="ユーザー情報変更"></td><td>';

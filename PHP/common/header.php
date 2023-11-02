@@ -18,31 +18,45 @@
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">フィンカ</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse show" id="navbarNavAltMarkup">
-          <div class="navbar-nav ms-auto">
-            <button type="submit" class="btn btn-primary">
-              <i class="fa-solid fa-house"></i> ホーム
-            </button>
-            <button type="submit" class="btn btn-primary">
-              <i class="fas fa-search"></i> 検索
-            </button>
-            <button type="submit" class="btn btn-primary">
-              <i class="fa-solid fa-cart-shopping"></i> カート
-            </button>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="top.php">フィンカ</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse show" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <div class="row">
+          <div class="col-auto">
+            <a href="search.php">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i> 検索
+              </button>
+            </a>
+          </div>
+          <div class="col-auto">
+            <a href="cart.php">
+              <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-cart-shopping"></i> カート
+              </button>
+            </a>
+          </div>
+          <div class="col-auto">
+            <a href="user-info.php">
+              <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-user"></i> ユーザー
+              </button>
+            </a>
           </div>
         </div>
       </div>
-    </nav>
+    </div>
+  </div>
+</nav>
