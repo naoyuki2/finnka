@@ -11,6 +11,7 @@
     echo "<br>";
     echo '<button type="cancel">キャンセル</button>';
     echo '<button type="submit">削除</button>';
-echo '</form>';
-     require './common/footer.php';
+    echo '</form>';
+    
+    require './common/footer.php';
 ?>
