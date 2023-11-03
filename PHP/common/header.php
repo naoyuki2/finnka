@@ -12,14 +12,16 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../CSS\style.css" />
+    <link rel="stylesheet" href="../CSS/style.css" />
 
     <title>finnka</title>
   </head>
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="top.php">フィンカ</a>
+    <a class="navbar-brand" href="top.php">
+      <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
+    </a>
     <button
       class="navbar-toggler"
       type="button"
@@ -36,21 +38,21 @@
         <div class="row">
           <div class="col-auto">
             <a href="search.php">
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-secondary">
                 <i class="fas fa-search"></i> 検索
               </button>
             </a>
           </div>
           <div class="col-auto">
             <a href="cart.php">
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-secondary">
                 <i class="fa-solid fa-cart-shopping"></i> カート
               </button>
             </a>
           </div>
           <div class="col-auto">
             <a href="user-info.php">
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-secondary">
                 <i class="fa-solid fa-user"></i> ユーザー
               </button>
             </a>
