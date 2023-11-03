@@ -2,8 +2,8 @@
     session_start();
     require './common/header.php';
     require './common/db-connect.php';
-    $id = $_SESSION['id'];
-    echo '<h1>',$id,'</h1>';
+    // $id = $_SESSION['id'];
+    // echo '<h1>',$id,'</h1>';
 ?>
 
 <p>おすすめ商品</p>
@@ -30,6 +30,12 @@ foreach($sql as $row){
 }
 ?>
 </table>
+<a href="accountDelete2.php">アカウント削除再確認</a>
+<a href="accountDelete1.php">アカウント削除確認</a>
+<a href="administrator top page.php">管理者トップ</a>
+<a href="result.php">画像結果</a>
+<a href="upload.php">画像上げ</a>
+<a href="user-info.php">ユーザー情報</a>
 <?php
     require './common/footer.php';
 ?>
