@@ -62,18 +62,20 @@
         $count = count($results);
         foreach($results as $row){
             echo '<div class="col-12 col-md-6 col-lg-4">';
-                echo '<div class="card">';
-                    echo '<img
-                        src=',$row['img_pass'],'
-                        class="card-img-top"
-                        alt="card-img-top"
-                    />';
+            echo '<div class="card">';
+            echo '<img
+            src=',$row['img_pass'],'
+            class="card-img-top"
+            alt="card-img-top"
+            />';
+            echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
                     echo '<div class="card-body">
                         <h5 class="card-title">',$row['title'],'</h5>
                         <p class="card-text">
                         ￥',$row['price'],'
                         </p>
                     </div>';
+                    echo '</a>';
                 echo '</div>';
             echo '</div>';
         }
