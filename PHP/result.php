@@ -1,17 +1,25 @@
 <?php require './common/header.php';?>
 <?php require './common/db-connect.php';?>
     
-    <form action="test.php" method="post">
-    <input type="hidden" name="title" value="<?php echo $_POST['title']; ?>">
-    <input type="hidden" name="category" value="<?php echo $_POST['category']; ?>">
-    <input type="hidden" name="author" value="<?php echo $_POST['author']; ?>">
-    <input type="hidden" name="price" value="<?php echo $_POST['price']; ?>">
-    <?php
-    echo '<div>';
-    echo '<span>検索条件：',$_POST['title'],'、',$_POST['category'],'、',$_POST['author'],'、',$_POST['price'],'</span>';
-    echo '<button type="submit">再検索</button>';
-    echo '</div>';
-    ?>
+    <form action="search.php" method="post">
+        <input type="hidden" name="title" value="<?php echo $_POST['title']; ?>">
+        <input type="hidden" name="category" value="<?php echo $_POST['category']; ?>">
+        <input type="hidden" name="author" value="<?php echo $_POST['author']; ?>">
+        <input type="hidden" name="price" value="<?php echo $_POST['price']; ?>">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group input-group-lg">
+                            <span class="form-control" aria-label="Large input group" aria-describedby="input-group-lg">
+                            <?php
+                                echo '<span>',$_POST['title'],'、',$_POST['category'],'、',$_POST['author'],'、',$_POST['price'],'</span>';
+                            ?>
+                            </span>
+                            <button type="submit" class="input-group-text" id="input-group-lg-example">再検索画面へ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </form>
     
     <?php
@@ -46,21 +54,32 @@
             $sql->execute($params);
     }
     ?>
+    <div class="container text-center">
+      <div class="row">
     <?php
     if(isset($sql)){
         $results = $sql->fetchAll();
         $count = count($results);
         foreach($results as $row){
-            echo '<div>';
-            echo '<a href="product_detail.php?id='.$row['product_id'].'">';
-            echo '<img src=',$row['img_pass'],'alt="art">';
-            echo '<br>';
-            echo '<p>',$row['title'],'</p>';
-            echo '<p>',$row['price'],'円</p>';    
-            echo '</a>';
+            echo '<div class="col-12 col-md-6 col-lg-4">';
+                echo '<div class="card">';
+                    echo '<img
+                        src=',$row['img_pass'],'
+                        class="card-img-top"
+                        alt="card-img-top"
+                    />';
+                    echo '<div class="card-body">
+                        <h5 class="card-title">',$row['title'],'</h5>
+                        <p class="card-text">
+                        ￥',$row['price'],'
+                        </p>
+                    </div>';
+                echo '</div>';
             echo '</div>';
         }
-        echo '<p>検索結果は', $count, '件です。</p>';
+        echo '</div>';
+    echo '</div>';
+    echo '<p>検索結果は', $count, '件です。</p>';
     }else{
         echo '<p></p>';
     }

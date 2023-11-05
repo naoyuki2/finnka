@@ -2,28 +2,57 @@
     require './common/header.php';
     require './common/db-connect.php';
 
-    echo '<p>商品検索画面</p>';
     $pdo=new PDO($connect, USER, PASS);
-    $sql=$pdo->query('select * from category');
+    $dbCategory=$pdo->query('select * from category');
+    $dbAuthor=$pdo->query('select * from author');
+    ?>
 
-    echo '<a href="#"><button type="button" class="btn btn-primary">戻る</button></a><br>';
-    echo "タイトル", '<input type="text" name="name"><br>';
-    echo 'カテゴリー ','<select name= "category">';
-    foreach($sql as $row){
-        echo '<option value =',$row['category_id'],' >',$row['category_name'],'</option>';
-    }
-    echo "</select>","<br>";
-    $sql=$pdo->query('select * from author');
-    echo  "作者名",'<select name= "author">';
-    foreach($sql as $row){
-        echo '<option value = ',$row['author_id'], '>',$row['author_name'],'</option>';
-    }
-    echo "<select><br>";
-    echo "価格",'<div class="slider-container">';
-    echo  '<input type="range" min="0" max="5000" value="0" step="1" class="slider" id="priceRange">';
-    echo  '<p class="range-label">',"価格:",'<span id="priceValue">','</span>','円','</p>';
-    echo '</div>';
-    echo '<a href="#"><button type="button" class="btn btn-primary">検索</button></a>';
+    <form action="result.php" method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="input-group-lg-example">タイトル</span>
+                        <?php
+                            echo '<input value="',(empty($_POST['title']) ? "" : $_POST['title']),'" name="title" type="text" class="form-control" aria-label="Large input group" aria-describedby="input-group-lg">';
+                        ?>
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="input-group-lg-example">カテゴリ</span>
+                        <select name= "category" class="form-select form-select-lg" aria-label="Large select">
+                        <option value=""></option>
+                        <?php
+                        foreach($dbCategory as $row){
+                            $selected = ($_POST['category'] == $row['category_id']) ? 'selected' : '';
+                            echo '<option value ="' . $row['category_id'] . '" ' . $selected . '>',$row['category_name'],'</option>';
+                        }
+                        ?>
+                        </select>
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="input-group-lg-example">作者名</span>
+                        <select name= "author" class="form-select form-select-lg" aria-label="Large select">
+                        <option value=""></option>
+                        <?php
+                        foreach($dbAuthor as $row){
+                            $selected = ($_POST['author'] == $row['author_id']) ? 'selected' : '';
+                            echo '<option value ="' . $row['author_id'] . '" ' . $selected . '>',$row['author_name'],'</option>';
+                        }
+                        ?>
+                        </select>
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="input-group-lg-example">金額</span>
+                        <?php
+                            echo '<input value="',(empty($_POST['price']) ? "" : $_POST['price']),'" name="price" type="text" class="form-control" aria-label="Large input group" aria-describedby="input-group-lg">';
+                        ?>
+                   </div>
+                    <button type="submit" class="btn btn-primary">Primary</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
+<?php
     require './common/footer.php';
 ?>
