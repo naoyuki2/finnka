@@ -34,7 +34,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     <datalist id="category-list">
                         <?php
                             foreach($sqlCategory as $row){
-                                echo "<option value=",$row['category_id'],">",$row['category_name'],"</option>";
+                                echo "<option value=",$row['category_name'],">",$row['category_name'],"</option>";
                             };
                         ?>
                     </datalist>
@@ -45,7 +45,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     <datalist id="author-list">
                         <?php
                             foreach($sqlAuthor as $row){
-                                echo "<option value=",$row['author_id'],">",$row['author_name'],"</option>";
+                                echo "<option value=",$row['author_name'],">",$row['author_name'],"</option>";
                             };
                         ?>
                     </datalist>

@@ -58,12 +58,12 @@ if (session_status() == PHP_SESSION_NONE) {
         $stmt->execute([$_POST['author']]);
     }
 
-    //カテゴリのidを追加
+    //カテゴリのidを取得
     $stmt = $pdo->prepare("SELECT category_id FROM category WHERE category_name = ?");
     $stmt->execute([$_POST['category']]);
     $category = $stmt->fetch(PDO::FETCH_ASSOC)['category_id'];
 
-    //著者のidを追加
+    //著者のidを取得
     $stmt = $pdo->prepare("SELECT author_id FROM author WHERE author_name = ?");
     $stmt->execute([$_POST['author']]);
     $author = $stmt->fetch(PDO::FETCH_ASSOC)['author_id'];
