@@ -15,13 +15,13 @@ if (isset($_GET['product_id'])) {
     $stock_sql->execute([$product_id]);
     $stock_row = $stock_sql->fetch();
 
-    
+
     $author_sql = $pdo->prepare('SELECT author_name FROM author WHERE author_id = ?');
     $author_sql->execute([$product_row['author_id']]);
     $author_row = $author_sql->fetch();
 
     if ($product_row && $stock_row) {
-        echo '<img src="./img/', $product_row['img_pass'], '" alt="商品画像">';
+        echo '<img src=', $product_row['img_pass'],' alt="商品画像">';
         echo '<p>', $product_row['title'], '</p>';
         echo '<table>';
         echo '<tr><td></td><td><form action="top.php"><input type="submit" value="戻る"></form></td></tr>';
@@ -46,7 +46,7 @@ if (isset($_GET['product_id'])) {
         echo '商品情報または在庫情報が見つかりません。';
     }
 } else {
-    echo '製品IDが指定されていません。';
+    echo '商品IDが指定されていません。';
 }
 
 require './common/footer.php';
