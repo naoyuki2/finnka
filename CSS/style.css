@@ -1,0 +1,22 @@
+body {
+  background-image: url(./liquid-cheese.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.input-group-text {
+  width: 130px; /* あるいは必要な幅に設定 */
+  justify-content: center;
+}
+
+.input-group.input-group-lg {
+  margin: 5px 0;
+}
+
+nav {
+  opacity: 0.7;
+}
+
+.card {
+  margin: 5px 0;
+}
