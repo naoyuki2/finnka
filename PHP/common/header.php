@@ -44,7 +44,7 @@
             </a>
           </div>
           <div class="col-auto">
-            <a href="cart.php">
+            <a href="cartDisplay.php">
               <button type="submit" class="btn btn-secondary">
                 <i class="fa-solid fa-cart-shopping"></i> カート
               </button>
