@@ -3,6 +3,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  color: #636363;
 }
 .input-group-text {
   width: 130px; /* あるいは必要な幅に設定 */
