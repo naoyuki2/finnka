@@ -28,10 +28,15 @@ if(empty($sql->fetchAll())){
         header('Location: new-login-input.php');
         exit;
     } else {
-        $sql=$pdo->prepare('insert into user values(null,?,0,0,?,?)');
+        $sql=$pdo->prepare('insert into user values(null,?,?,0,?,?)');
         $sql->execute([
-        $_POST['user_name'],$password_hash,$salt]);
-        $_SESSION['id'] = $sql['user_id'];
+        $_POST['user_name'],"../uploads/default_icon.jpg",$password_hash,$salt]);
+
+        $sql=$pdo->prepare('select * from user where user_name = ?');
+        $sql->execute([$_POST['user_name']]);
+        $user = $sql->fetch();
+
+        $_SESSION['id'] = $user['user_id'];
         header('Location: top.php');
         exit;
     }

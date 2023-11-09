@@ -51,7 +51,7 @@
             </a>
           </div>
           <div class="col-auto">
-            <a href="user-info.php">
+            <a href="userInfo.php">
               <button type="submit" class="btn btn-secondary">
                 <i class="fa-solid fa-user"></i> ユーザー
               </button>

@@ -2,6 +2,11 @@
     session_start();
     require './common/header.php';
     require './common/db-connect.php';
+    if(empty($_SESSION['id'])){
+        echo "ユーザーIDが入っていません";
+    }else{
+        echo $_SESSION['id'];
+    }
 ?>
 
 <!-- <p>おすすめ商品</p>
