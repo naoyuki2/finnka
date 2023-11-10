@@ -24,7 +24,7 @@ require './common/db-connect.php';
                             echo '<form action="user-info-login-input.php" method="post">';
                             echo '<tr><td><input type="submit" class="btn btn-secondary" value="ユーザー情報変更"></td><td>';
                             echo '</form>';
-                            echo '<form action="akakesu.php" method="post">';
+                            echo '<form action="accountDelete1.php" method="post">';
                             echo '<input type="submit" class="btn btn-secondary" value="アカウント削除"></td><td>';
                             echo '</form>';
                             echo '<form action="注文履歴照会.php" method="post">';

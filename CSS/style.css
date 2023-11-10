@@ -22,3 +22,18 @@ nav,
 .card {
   margin: 5px 0;
 }
+
+.frame {
+  position: relative;
+  border-top: 20px solid #b37d4d;
+  border-right: 20px solid #b37d4d;
+  border-bottom: 20px solid #d2ae7e;
+  border-left: 20px solid #d2ae7e;
+  box-shadow: inset 0 0 10px #000;
+  display: inline-block;
+  z-index: 2; /* 追加 */
+}
+.frame img {
+  position: relative;
+  z-index: 1; /* 修正 */
+}

@@ -24,11 +24,13 @@ $sql = $pdo->query('select * from products');
 foreach($sql as $row){
     echo '<div class="col-12 col-md-6 col-lg-4">';
     echo '<div class="card">';
+    echo '<div class="frame">';
     echo '<img
     src=',$row['img_pass'],'
     class="card-img-top"
     alt="card-img-top"
     />';
+    echo '</div>';
     echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
     echo '<div class="card-body">
     <h5 class="card-title">',$row['title'],'</h5>
