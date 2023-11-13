@@ -1,6 +1,16 @@
-<?php require './common/header.php'; ?>
+<?php
+ session_start();
+ require './common/header.php'; 
+
+    if(empty($_SESSION['user-info-error'])){
+        echo "";
+    }else{
+        echo $_SESSION['user-info-error'];
+    }
+?>
 
 <form action="user-info-login-output.php" method="post">
+    
     <table>
         <tr>
             <td>ユーザーネーム</td>
