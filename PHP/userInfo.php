@@ -30,7 +30,7 @@ require './common/db-connect.php';
                             echo '<form action="注文履歴照会.php" method="post">';
                             echo '<input type="submit" class="btn btn-secondary" value="注文履歴照会"></td><td>';
                             echo '</form>';
-                            echo '<form action="login.php" method="post">';
+                            echo '<form action="logout.php" method="post">';
                             echo '<input type="submit" class="btn btn-secondary" value="ログアウト"></td></tr>';
                             echo '</form>';
                             echo '</div>';
