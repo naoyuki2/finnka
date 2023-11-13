@@ -66,7 +66,7 @@ echo '合計金額', $totalPrice, '円';
   ?>
 </form>
 
-<a href="cartDisplay.php">戻る</a><a href="">お支払いに進む</a>
+<a href="cartDisplay.php">戻る</a><a href="orderFunction.php">お支払いに進む</a>
 
 <?php
 require './common/footer.php';
