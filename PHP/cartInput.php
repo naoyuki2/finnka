@@ -26,7 +26,6 @@
     if($_POST['action'] == 'カートに入れる'){
         header('Location:cartDisplay.php');
     }else{
-        // header('Location:orderInput.php');
-        echo '購入処理はまだできてないよ';
+        header('Location:orderInput.php');
     }
 ?>

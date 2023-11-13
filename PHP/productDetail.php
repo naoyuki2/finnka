@@ -66,7 +66,7 @@ if (isset($_GET['product_id'])) {
                 echo '</div>';
                 echo '</div>';
                 echo'<button type="button" class="btn btn-secondary">プレビュー</button>';
-                echo '<input type="hidden" name="product_id" value=',$product_id,'>';
+                echo'<input type="hidden" name="product_id" value=',$product_id,'>';
                 echo'<input class="btn btn-secondary" type="submit" name="action" value="カートに入れる">';
                 echo'<input class="btn btn-secondary" type="submit" name="action" value="今すぐ購入">';
                 echo '</form>';
