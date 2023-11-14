@@ -47,7 +47,9 @@
                             echo '<input value="',(empty($_POST['price']) ? "" : $_POST['price']),'" name="price" type="text" class="form-control" aria-label="Large input group" aria-describedby="input-group-lg">';
                         ?>
                    </div>
-                    <button type="submit" class="btn btn-primary">Primary</button>
+                   <div class="order d-flex justify-content-center">
+                        <button type="submit" class="order_button btn btn-outline-secondary w-100">検索する</button>
+                    </div>
                 </div>
             </div>
         </div>

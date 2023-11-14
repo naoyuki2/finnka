@@ -1,6 +1,8 @@
 <?php session_start(); 
     require './common/db-connect.php'; 
 
+    uset($_SESSION['user-info-error']);
+
     $pdo = new PDO($connect, USER, PASS); 
     $sql = $pdo->prepare('select * from user where user_name=?');
     $sql->execute([$_POST['user_name']]);

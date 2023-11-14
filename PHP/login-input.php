@@ -1,6 +1,6 @@
 <?php
 session_start();
-require './common/header.php';
+require './common/login-header.php';
 require './common/db-connect.php';
 $errorMessage = "";
 if (isset($_SESSION['errorMessage'])) {

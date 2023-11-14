@@ -1,3 +1,14 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if(!isset($_SESSION['id']) || $_SESSION['id'] === ''){
+  header('Location: login-input.php');
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
