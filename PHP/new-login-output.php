@@ -18,7 +18,11 @@ if(isset($_SESSION['user'])){
     $sql->execute([$_POST['user_name']]);
 }
 
-if(empty($sql->fetchAll())){
+if(strlen($_POST['password']) > 20 || strlen($_POST['password2']) > 20) {
+    $_SESSION['error_message'] = 'パスワードは２０文字以内に設定してください';
+    header('Location: new-login-input.php');
+    exit;
+}else if(empty($sql->fetchAll())){
     if($_POST['password'] !== $_POST['password2']) {
         $_SESSION['error_message'] = 'パスワードが一致しません。';
         header('Location: new-login-input.php');
