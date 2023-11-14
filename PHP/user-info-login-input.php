@@ -1,5 +1,4 @@
 <?php
- session_start();
  require './common/header.php'; 
 
     if(empty($_SESSION['user-info-error'])){

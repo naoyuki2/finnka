@@ -1,8 +1,8 @@
 <?php
-session_start();
-$user_id = $_SESSION['id'];
 require './common/header.php';
 require './common/db-connect.php';
+
+$user_id = $_SESSION['id'];
 
 echo '<p>注文情報</p>';
 
