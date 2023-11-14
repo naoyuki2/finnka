@@ -1,5 +1,5 @@
 <?php
-require './common/header.php';
+require './common/login-header.php';
 
 if (isset($_SESSION['error_message'])) {
     echo '<p class="error-message">' . $_SESSION['error_message'] . '</p>';
