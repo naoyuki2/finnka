@@ -21,4 +21,7 @@
         <div class="container-fluid">
             <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
         </div>
+        <a href="adminLogin.php">
+          管理者の方
+        </a>
     </nav>
