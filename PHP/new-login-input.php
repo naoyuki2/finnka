@@ -1,9 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-?>
-<?php
 require './common/header.php';
 
 if (isset($_SESSION['error_message'])) {

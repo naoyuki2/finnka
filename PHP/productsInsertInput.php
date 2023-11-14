@@ -1,7 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
  require './common/header.php';
  require './common/db-connect.php';?>
 
