@@ -47,7 +47,7 @@
                             echo '<input value="',(empty($_POST['price']) ? "" : $_POST['price']),'" name="price" type="text" class="form-control" aria-label="Large input group" aria-describedby="input-group-lg">';
                         ?>
                    </div>
-                    <button type="submit" class="btn btn-primary">Primary</button>
+                   <button type="submit" class="btn btn-danger">Danger</button>
                 </div>
             </div>
         </div>
