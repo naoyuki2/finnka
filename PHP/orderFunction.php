@@ -31,6 +31,16 @@
             $row['quantity'],
             $product['price']
         ]);
+
+        $stmt = $pdo->prepare("select * from stock where product_id=?");
+        $stmt->execute([$row['product_id']]);
+        $product = $stmt->fetch();
+
+        $sql=$pdo->prepare('update stock set quantity=? where product_id = ?');
+        $sql->execute([
+            $product['quantity'] - $row['quantity'],
+            $row['product_id']
+        ]);
     }
 
     $stmt = $pdo->prepare('DELETE FROM cartDetails');
