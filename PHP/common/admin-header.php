@@ -21,7 +21,7 @@
         <div class="container-fluid">
             <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
         </div>
-        <a href="admin-login-input.php">
-          管理者の方
+        <a href="adminLogin.php">
+          ログインに戻る
         </a>
     </nav>
