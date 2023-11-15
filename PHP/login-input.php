@@ -1,6 +1,6 @@
 <?php
 session_start();
-require './common/header.php';
+require './common/login-header.php';
 require './common/db-connect.php';
 $errorMessage = "";
 if (isset($_SESSION['errorMessage'])) {
@@ -29,7 +29,7 @@ if (isset($_SESSION['errorMessage'])) {
     <?php if ($errorMessage): ?>
     <p class="error-message"><?= $errorMessage ?></p>
     <?php endif; ?>
-    <p><a href="リンク先">アカウントをお持ちではない方</a></p>
+    <p><a href="new-login-input.php">アカウントをお持ちではない方</a></p>
 </div>
 
 <style>

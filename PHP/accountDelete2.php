@@ -7,7 +7,7 @@
     echo '<form action="product.php" method="post">';
     echo '<button type="submit">見に行く</button>';
     echo '</form>';
-    echo '<form action="login.php" method="post">';
+    echo '<form action="login-input.php" method="post">';
     echo '<button type="submit">削除</button>';
     echo '</form>';
 

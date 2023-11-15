@@ -1,3 +1,14 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if(!isset($_SESSION['id']) || $_SESSION['id'] === ''){
+  header('Location: login-input.php');
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -44,14 +55,14 @@
             </a>
           </div>
           <div class="col-auto">
-            <a href="cart.php">
+            <a href="cartDisplay.php">
               <button type="submit" class="btn btn-secondary">
                 <i class="fa-solid fa-cart-shopping"></i> カート
               </button>
             </a>
           </div>
           <div class="col-auto">
-            <a href="user-info.php">
+            <a href="userInfo.php">
               <button type="submit" class="btn btn-secondary">
                 <i class="fa-solid fa-user"></i> ユーザー
               </button>

@@ -1,9 +1,11 @@
 <?php
-    session_start();
     require './common/header.php';
     require './common/db-connect.php';
-    // $id = $_SESSION['id'];
-    // echo '<h1>',$id,'</h1>';
+    // if(empty($_SESSION['id'])){
+    //     echo "ユーザーIDが入っていません";
+    // }else{
+    //     echo $_SESSION['id'];
+    // }
 ?>
 
 <!-- <p>おすすめ商品</p>
@@ -21,11 +23,13 @@ $sql = $pdo->query('select * from products');
 foreach($sql as $row){
     echo '<div class="col-12 col-md-6 col-lg-4">';
     echo '<div class="card">';
+    echo '<div class="frame">';
     echo '<img
     src=',$row['img_pass'],'
     class="card-img-top"
     alt="card-img-top"
     />';
+    echo '</div>';
     echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
     echo '<div class="card-body">
     <h5 class="card-title">',$row['title'],'</h5>

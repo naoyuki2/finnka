@@ -1,17 +1,57 @@
-<!-- 商品詳細画面、ヘッダーのカートアイコンから遷移してくる画面 -->
 <?php
     require './common/header.php';
     require './common/db-connect.php';
+    $pdo = new PDO($connect,USER,PASS);
     
-    １．カート内のアートなどのHTMLを記述。
-    ２．$_SESSION['id']でuse_idを取り出す。
-    ３．user_idでcartテーブルを検索し、cart_idを取り出す。
-    ４．cart_idからcartDetailテーブルを検索し、product_id(商品ID)とquantity(数量)を取り出す。
-    ５．product_id,とquantityを使って商品テーブルを検索しx注文情報(タイトル、作者、数量、金額)を出力する。
-    ６．数量を変数で数えて□点を出力。
-    ７．数量×金額を計算し、合計して出力。
-    ８．×ボタンでdelete処理を実行。
-    ９．注文するボタンで注文情報入力画面(orderInput.php)に遷移する。
+    $sql=$pdo->prepare('select * from cart where user_id = ?');
+    $sql->execute([$_SESSION['id']]);
+    $cart_id = $sql->fetchColumn();//cart_id:10
 
+    $cartDetail=$pdo->prepare('select * from cartDetails where cart_id = ?');
+    $cartDetail->execute([$cart_id]);
+    $cartDetail_result = $cartDetail->fetchAll();
+    echo '<div class="container">';
+    echo '<div class="row">';
+    if(!empty($cartDetail_result)){
+        foreach($cartDetail_result as $row){
+            $product=$pdo->prepare('select * from products where product_id = ?');
+            $product->execute([$row['product_id']]);
+            $result = $product->fetch();
+
+            $stmt=$pdo->prepare('select * from author where author_id = ?');
+            $stmt->execute([$result['author_id']]);
+            $author = $stmt->fetch();
+
+                echo '<div class="col-12 col-md-6">';
+                    echo '<div class="card">';
+                        echo '<div class="row g-0">';
+                            echo '<div class="col-7 col-sm-8">';
+                                echo '<div class="card-body">';
+                                    echo'<h5 class="card-title">',$result['title'],'</h5>';
+                                        echo'<p class="card-text">作者：',$author['author_name'],'</p>';
+                                        echo'<p class="card-text">数量：',$row['quantity'],'個</p>';
+                                        echo'<p class="card-text">金額：',$result['price'],'円</p>';
+                                        echo '<form action="cartDelete.php" method="post">';
+                                            echo '<input type="hidden" name="cart_detail_id" value=',$row['cart_detail_id'],'>';
+                                            echo '<button type="submit">削除</button>';
+                                        echo '</form>';
+                                    echo '</div>';
+                                echo '</div>';
+                                echo '<div class="col-5 col-sm-4">';
+                            echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
+                                echo'<img src=',$result['img_pass'],' class="img-fluid" alt="card-horizontal-image">';
+                                echo '</a>';
+                            echo '</div>';
+                        echo '</div>';
+                    echo '</div>';
+                echo '</div>';
+        }
+        echo '</div>';
+        echo '</div>';
+        echo '<a href="orderInput.php">購入する</a>';
+    }else{
+        echo '<h1>カートに商品が入っていないようです</h1>';
+    }
+    
     require './common/footer.php';
 ?>

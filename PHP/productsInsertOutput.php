@@ -81,6 +81,17 @@ if (session_status() == PHP_SESSION_NONE) {
         $_POST['price'],
         $destination
     ]);
+
+    $stmt=$pdo->prepare('select * from products where title = ?');
+    $stmt->execute([$_POST['title']]);
+    $product_id = $stmt->fetch();
+
+    $sql=$pdo->prepare('insert into stock values(null,?,?)');
+    $sql->execute([
+        $product_id['product_id'],
+        $_POST['stock']
+    ]);
+
     $_SESSION['dbMessage'] = "DB inserted successfully.";
     header('Location: productsInsertInput.php');
     exit;

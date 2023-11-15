@@ -2,14 +2,16 @@
     require './common/header.php';
     require './common/db-connect.php';
 
-    echo '<form action="account deletion 2.php" method="post">';
     echo '<p>アカウント削除1</p>';
     echo "<h1>アカウント削除</h1>";
     echo "<p>注意</p>";
     echo "<p>アカウントを削除するとすべての<br>";
     echo "登録データが削除されます";
     echo "<br>";
+    echo '<form action="userInfo.php" method="post">';
     echo '<button type="cancel">キャンセル</button>';
+    echo '</form>';
+    echo '<form action="accountDelete2.php" method="post">';
     echo '<button type="submit">削除</button>';
     echo '</form>';
     

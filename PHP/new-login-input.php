@@ -1,10 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-?>
-<?php
-require './common/header.php';
+require './common/login-header.php';
 
 if (isset($_SESSION['error_message'])) {
     echo '<p class="error-message">' . $_SESSION['error_message'] . '</p>';
@@ -17,32 +12,102 @@ if (isset($_SESSION['user'])) {
     $user_name = $_SESSION['user']['user_name'];
     $password1 = $_SESSION['user']['password'];
 }
-
-echo '<form action="login.php" method="post">';
-echo '<input type="submit" value="戻る">';
-echo '</form>';
+echo '<div class="login-container">';
+    echo '<form action="login.php" method="post">';
+    echo '<input type="submit" value="戻る">';
+    echo '</form>';
 
     echo '<form action="new-login-output.php" method="post">';
-    echo '<table>';
 
-    echo '<tr><td>ユーザーネーム</td><td>';
-    echo '<input type="text" name="user_name" value="', $user_name, '">';
-    echo '</td></tr>';
+        echo '<div class="form-group">';
+            echo '<label for="username">ユーザーネーム</label>';
+            echo '<input class="form-control" type="text" name="user_name" value="', $user_name, '">';
+        echo '</div>';
 
-    echo '<tr><td>パスワード</td><td>';
-    echo '<input id="pass" type="password" name="password" value="', $password1, '"><br>';
-    echo '<input id="show_password" type="checkbox">パスワードを表示する';
-    echo '</td></tr>';
+        echo '<div class="form-group">';
+            echo '<label for="password">パスワード</label>';
+            echo '<input class="form-control" id="pass" type="password" name="password" value="', $password1, '">';
+        echo '</div>';
 
-    echo '<tr><td>パスワード確認</td><td>';
-    echo '<input id="pass2" type="password" name="password2" value="', $password2, '"><br>';
-    echo '<input id="show_password2" type="checkbox">パスワードを表示する';
-    echo '</td></tr>';
+        echo '<div class="form-group show-password-label">';
+            echo '<label>パスワードを表示する</label>';
+            echo '<input type="checkbox" id="show_password">';
+        echo '</div>';
 
-    echo '</table>';
-    echo '<input type="submit" value="登録">';
+        echo '<div class="form-group">';
+            echo '<label for="password">パスワード確認</label>';
+            echo '<input class="form-control" id="pass2" type="password" name="password2" value="', $password2, '">';
+        echo '</div>';
+
+        echo '<div class="form-group show-password-label">';
+            echo '<label>パスワードを表示する</label>';
+            echo '<input type="checkbox" id="show_password2">';
+        echo '</div>';
+
+
+        echo '<input type="submit" value="登録">';
+        echo '</div>';
     echo '</form>';
+echo '</div>';
 ?>
+
+
+<style>
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 40px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .btn {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .show-password-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+    </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {

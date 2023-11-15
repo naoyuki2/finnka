@@ -1,4 +1,7 @@
 <?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 require './common/header.php';
 require './common/db-connect.php';
 
@@ -21,27 +24,65 @@ if (isset($_GET['product_id'])) {
     $author_row = $author_sql->fetch();
 
     if ($product_row && $stock_row) {
-        echo '<img src=', $product_row['img_pass'],' alt="商品画像">';
-        echo '<p>', $product_row['title'], '</p>';
-        echo '<table>';
-        echo '<tr><td></td><td><form action="top.php"><input type="submit" value="戻る"></form></td></tr>';
-        echo '<tr><td>作者</td><td><input type="text" value="', $author_row['author_name'], '" readonly></td></tr>';
-        echo '<tr><td>作者の思い</td><td><input type="text" value="', $product_row['thought'], '" readonly></td></tr>';
-        echo '<tr><td>金額</td><td><input type="text" value="', $product_row['price'], '" readonly></td></tr>';
-        echo '<tr><td>数量</td><td><select name="quantity">';
-        for ($i = 1; $i <= $stock_row['quantity']; $i++) {
-            echo '<option value="', $i, '">', $i, '</option>';
-        }
-        echo '</select></td></tr>';
-        echo '<tr><td>額縁</td><td>
-            <input type="radio" name="gakubuti" value="natural">
-            <input type="radio" name="gakubuti" value="darkWood">
-            <input type="radio" name="gakubuti" value="whiteWood">
-            <form action=""><input type="submit" value="プレビュー"></form>
-            </td></tr>';
-        echo '</table>';
-        echo '<form action=""><input type="submit" value="カートに入れる"></form>';
-        echo '<form action=""><input type="submit" value="今すぐ購入"></form>';
+        echo '<form action="cartInput.php" method="post">';
+        echo '<div class="container">';
+            echo '<div class="row">';
+                echo '<div class="col-12">';
+                    echo '<div class="card">';
+                        echo '<div class="row g-0">';
+                            echo '<div class="col-12 col-lg-4">';
+                                echo'<img src=',$product_row['img_pass'],' class="img-fluid" alt="card-horizontal-image">';
+                            echo '</div>';
+                            echo '<div class="col-12 col-lg-8">';
+                                echo '<div class="card-body">';
+                                    echo '<p class="card-text fs-3">',$product_row['title'],'</p>';
+                                    echo '<p class="card-text fs-3">作者：',$author_row['author_name'],'</p>';
+                                    echo '<p class="card-text fs-3">作者の思い：',$product_row['thought'],'</p>';
+                                    echo '<p class="card-text fs-3">金額：',$product_row['price'],'円</p>';
+
+                                    echo '<div class="form-floating">';
+                                        echo '<select name="quantity" class="form-select fs-5" id="floatingSelect" aria-label="Floating label select example">';
+                                        for ($i = 1; $i <= $stock_row['quantity']; $i++) {
+                                            echo '<option value="', $i, '">', $i, '</option>';
+                                        }
+                                        echo '</select>';
+                                        echo '<label for="floatingSelect">数量</label>';
+                                    echo '</div>';
+                                    echo '<div class="btn-group" role="group" aria-label="Basic radio toggle button group">';
+                                        echo '<input type="radio" class="btn-check radio" name="btnGroupRadio" id="btnRadio1" autocomplete="off" checked="">';
+                                        echo '<label class="btn radio" for="btnRadio1">Radio 1</label>';
+
+                                        echo '<input type="radio" class="btn-check" name="btnGroupRadio" id="btnRadio2" autocomplete="off">';
+                                        echo '<label class="btn radio" for="btnRadio2">Radio 2</label>';
+
+                                        echo '<input type="radio" class="btn-check" name="btnGroupRadio" id="btnRadio3" autocomplete="off">';
+                                        echo '<label class="btn radio" for="btnRadio3">Radio 3</label>';
+                                    echo '</div>';
+
+                                echo '</div>';
+                            echo '</div>';
+                        echo '</div>';
+                    echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                echo'<button type="button" class="btn btn-secondary">プレビュー</button>';
+                echo'<input type="hidden" name="product_id" value=',$product_id,'>';
+                echo'<input class="btn btn-secondary" type="submit" name="action" value="カートに入れる">';
+                echo'<input class="btn btn-secondary" type="submit" name="action" value="今すぐ購入">';
+                echo '</form>';
+        echo '</div>';
+
+        // echo '<tr><td>額縁</td><td>
+        //     <input type="radio" name="gakubuti" value="natural">
+        //     <input type="radio" name="gakubuti" value="darkWood">
+        //     <input type="radio" name="gakubuti" value="whiteWood">
+        //     <input type="submit" value="プレビュー">
+        //     </td></tr>';
+        // echo '</table>';
+        // echo '<input type="hidden" name="product_id" value=',$product_id,'>';
+        // echo '<input type="submit" name="action" value="カートに入れる">';
+        // echo '<input type="submit" name="action" value="今すぐ購入">';
+        // echo '</form>';
     } else {
         echo '商品情報または在庫情報が見つかりません。';
     }
