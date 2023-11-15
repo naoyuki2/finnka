@@ -28,7 +28,7 @@ if(empty($sql->fetchAll())){
         header('Location: new-login-input.php');
         exit;
     } else {
-        $sql=$pdo->prepare('insert into user values(null,?,?,0,?,?)');
+        $sql=$pdo->prepare('insert into user values(null,?,?,?,?,0)');
         $sql->execute([
         $_POST['user_name'],"../uploads/default_icon.jpg",$password_hash,$salt]);
 

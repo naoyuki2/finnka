@@ -46,12 +46,6 @@ foreach($sql as $row){
 </div>
 
 </table>
-<a href="accountDelete2.php">アカウント削除再確認</a>
-<a href="accountDelete1.php">アカウント削除確認</a>
-<a href="administrator top page.php">管理者トップ</a>
-<a href="result.php">画像結果</a>
-<a href="upload.php">画像上げ</a>
-<a href="user-info.php">ユーザー情報</a>
 <a href="productsInsertInput.php">商品登録</a>
 <?php
     require './common/footer.php';

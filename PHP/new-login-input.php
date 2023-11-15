@@ -1,10 +1,8 @@
 <?php
+session_start();
 require './common/login-header.php';
 
-if (isset($_SESSION['error_message'])) {
-    echo '<p class="error-message">' . $_SESSION['error_message'] . '</p>';
-    unset($_SESSION['error_message']); // エラーメッセージを表示したら、セッション変数から削除します
-}
+
 
 $user_name=$password1=$password2='';
 $error = '';
@@ -13,7 +11,12 @@ if (isset($_SESSION['user'])) {
     $password1 = $_SESSION['user']['password'];
 }
 echo '<div class="login-container">';
-    echo '<form action="login.php" method="post">';
+    if (isset($_SESSION['error_message'])) {
+        echo '<p class="error-message">' . $_SESSION['error_message'] . '</p>';
+        unset($_SESSION['error_message']); // エラーメッセージを表示したら、セッション変数から削除します
+    }
+
+    echo '<form action="login-input.php" method="post">';
     echo '<input type="submit" value="戻る">';
     echo '</form>';
 
