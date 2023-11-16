@@ -18,7 +18,7 @@ foreach($sql as $row){
     alt="card-img-top"
     />';
     echo '</div>';
-    echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
+    echo '<a href="admin-edit-input.php?product_id='.$row['product_id'].'">';
     echo '<div class="card-body">
     <h5 class="card-title">',$row['title'],'</h5>
     <p class="card-text">
