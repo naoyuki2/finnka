@@ -1,5 +1,5 @@
 <?php
- require './common/header.php';
+ require './common/admin-header.php';
  require './common/db-connect.php';?>
 
 <?php
