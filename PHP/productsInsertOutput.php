@@ -3,7 +3,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
     $uploaded_file = $_FILES['product_image'];
-    echo $uploaded_file['name'];
     if(!empty($uploaded_file['name'])){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // ファイルがアップロードされていることを確認
