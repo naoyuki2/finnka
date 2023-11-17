@@ -26,7 +26,7 @@ require './common/db-connect.php';
 
           <div class="col-6 col-lg-10 mb-4 mb-lg-3">
             <a href="user-info-login-input.php">
-              <button type="submit" class="btn btn-outline-dark">
+              <button type="submit" class="btn btn-outline-dark userinfoButton">
                 <i class="fa-solid fa-user-pen"></i><br>個人情報変更
               </button>
             </a>
@@ -34,7 +34,7 @@ require './common/db-connect.php';
 
             <div class="col-6 col-lg-10 mb-4 mb-lg-3">
             <a href="注文履歴照会.php">
-              <button type="submit" class="btn btn-outline-dark">
+              <button type="submit" class="btn btn-outline-dark userinfoButton">
                 <i class="fa-solid fa-bag-shopping"></i><br>注文履歴照会
               </button>
             </a>
@@ -42,7 +42,7 @@ require './common/db-connect.php';
 
           <div class="col-6 col-lg-10 mb-4 mb-lg-3">
             <a href="accountDelete1.php">
-              <button type="submit" class="btn btn-outline-dark">
+              <button type="submit" class="btn btn-outline-dark userinfoButton">
                 <i class="fas fa-user-slash"></i><br>アカウント削除
               </button>
             </a>
@@ -52,7 +52,7 @@ require './common/db-connect.php';
 
           <div class="col-6 col-lg-10 mb-4 mb-lg-3">
             <a href="logout.php">
-              <button type="submit" class="btn btn-outline-dark">
+              <button type="submit" class="btn btn-outline-dark userinfoButton">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i><br>ログアウト
               </button>
             </a>
@@ -66,12 +66,12 @@ require './common/db-connect.php';
 </div>
 
 <style>
-  .btn {
+  .userinfoButton {
     width: 70%;
     padding: 10px;
   }
 
-  .btn i {
+  .userinfoButton i {
     font-size: 1.8em;
   }
 </style>
