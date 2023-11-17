@@ -4,12 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 ?>
 <?php
-require './common/header.php';
-
-if (isset($_SESSION['error_message'])) {
-    echo '<p class="error-message">' . $_SESSION['error_message'] . '</p>';
-    unset($_SESSION['error_message']); // エラーメッセージを表示したら、セッション変数から削除します
-}
+require './common/login-header.php';
 
 $user_name=$password1=$password2='';
 $error = '';
@@ -20,7 +15,7 @@ if (isset($_SESSION['user'])) {
 echo '<div class="login-container">';
 
     echo '<form action="new-login-output.php" method="post">';
-
+        echo '<h2>新規登録</h2>';
         echo '<div class="form-group">';
             echo '<label for="username">ユーザーネーム</label>';
             echo '<input class="form-control" type="text" name="user_name" value="', $user_name, '">';
@@ -45,6 +40,11 @@ echo '<div class="login-container">';
             echo '<label>パスワードを表示する</label>';
             echo '<input type="checkbox" id="show_password2">';
         echo '</div>';
+
+        if (isset($_SESSION['error_message'])) {
+            echo '<p class="error-message">' . $_SESSION['error_message'] . '</p>';
+            unset($_SESSION['error_message']); // エラーメッセージを表示したら、セッション変数から削除します
+        }
 
         echo '<div class="container">';
         echo '<div class="row">';

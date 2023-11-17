@@ -1,23 +1,57 @@
-<?php require './common/header.php'; ?>
-<?php require './common/db-connect.php'; ?>
+<?php
+ require './common/header.php'; 
+ require './common/db-connect.php'; 
+ $product_id = $_GET['product_id'];
 
 
-<form action="商品詳細.php" method="post">
-    <input type="submit" value="戻る">
-</form>
+    $pdo = new PDO($connect,USER,PASS);
+    $stmt=$pdo->prepare('select * from products where product_id = ?');
+    $stmt->execute([$product_id]);
+    $product = $stmt->fetch();
+?>
+
+<?php echo '<a href=productDetail.php?product_id='.$product_id.'"><button>戻る</button></a>';?>
 
 <form action="preview2.php" method="post" id="imageForm">
     <input type="button" value="<" onclick="changeImage(-1)">
     <input type="button" value=">" onclick="changeImage(+1)">
 </form>
 
-<p id="imageContainer">
-    <img alt="image" src="image/sample1.jpg" width="600" height="450">
-</p>
+<div class="container text-center">
+    <div class="row">
+        <div class="col-12">
+            <?php echo '<div style="position: relative;">'; ?>
+                <p id="imageContainer" style="position: absolute; top: 0; left: 0;">
+                    <img class="img-fluid" alt="image" src="image/sample1.jpg">
+                </p>
 
-<p id="p" style="width: 220px; height: 270px; border: 10px solid transparent; display: inline-block;">
-<img alt="image" src="image/商品.jpg" width="200" height="250">
-</p>
+                <p id="p" style="position: absolute; top: 30; border: 10px solid transparent;">
+                    <?php echo '<img alt="image" src=',$product['img_pass'],' width="200" height="250">';?>
+                </p>
+            <?php echo '</div>'; ?>
+        </div>
+    </div>
+</div>
+
+echo '<div class="col-12 col-md-6 col-lg-4">';
+    echo '<div class="card">';
+    echo '<div class="frame">';
+    echo '<img
+    src=',$row['img_pass'],'
+    class="card-img-top"
+    alt="card-img-top"
+    />';
+    echo '</div>';
+    echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
+    echo '<div class="card-body">
+    <h5 class="card-title">',$row['title'],'</h5>
+    <p class="card-text">
+    ￥',$row['price'],'
+    </p>
+    </div>';
+    echo '</a>';
+    echo '</div>';
+    echo '</div>';
 
 <form action="preview2.php" method="post" enctype="multipart/form-data" id="changeImageForm">
     <input type="file" name="image" id="imageInput" onchange="previewImage()" style="display: none;">
@@ -33,7 +67,7 @@
 </form>
 
 <script>
-    const images = ["image/sample1.jpg", "image/sample2.jpg", "image/sample3.jpg"];
+    const images = ["../uploads/room1.jpg", "../uploads/room1.jpg", "../uploads/room1.jpg"];
     
     let currentIndex = 0;
 
@@ -73,6 +107,10 @@
                 imageContainer.style.border = `10px solid ${frameColor}`;
             }
         });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        changeImage(0);
     });
 </script>
 </body>
