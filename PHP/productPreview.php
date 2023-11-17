@@ -1,23 +1,80 @@
-<!-- 商品詳細画面(productDetail.php)から遷移してくる画面。 -->
-<?php
-    require './common/header.php';
+<?php require './common/header.php'; ?>
+<?php require './common/db-connect.php'; ?>
+
+
+<form action="商品詳細.php" method="post">
+    <input type="submit" value="戻る">
+</form>
+
+<form action="preview2.php" method="post" id="imageForm">
+    <input type="button" value="<" onclick="changeImage(-1)">
+    <input type="button" value=">" onclick="changeImage(+1)">
+</form>
+
+<p id="imageContainer">
+    <img alt="image" src="image/sample1.jpg" width="600" height="450">
+</p>
+
+<p id="p" style="width: 220px; height: 270px; border: 10px solid transparent; display: inline-block;">
+<img alt="image" src="image/商品.jpg" width="200" height="250">
+</p>
+
+<form action="preview2.php" method="post" enctype="multipart/form-data" id="changeImageForm">
+    <input type="file" name="image" id="imageInput" onchange="previewImage()" style="display: none;">
+    <label for="imageInput" style="cursor: pointer;">画像を選択</label>
+</form>
+
+
+<form action="preview2.php" method="post" id="frameSelectionForm">
+    額縁
+    <input type="radio" name="student" value="#cfb85b">
+    <input type="radio" name="student" value="#201d21">
+    <input type="radio" name="student" value="#9e2020">
+</form>
+
+<script>
+    const images = ["image/sample1.jpg", "image/sample2.jpg", "image/sample3.jpg"];
     
-    // productDetail.phpでpostでimg_passが送られるためそれを受け取る
-    if(isset($_POST['img_pass'])){
-        $img_pass = $_POST['img_pass'];
-        echo $img_pass;
-        // 下記を見た目を気にせずにとりあえず動くようにする
-        // 難しめのところはパスでもＯＫ
-        // １．戻るボタン(productDetail.phpに戻るaタグ)
-        // ２ー１．商品画像を表示する(productDetailから受け取った$img_passで画像を表示する)
-        // ２－２．商品画像に額縁を付ける(おそらくＣＳＳでどうにかする)
-        // ３．背景(難しめ)(部屋の背景をネットからダウンロードしてきて商品画像の背面に配置する)
-        // ４．画像を変更ボタン(難しめ)(背景画像をユーザーにアップロードさせる)
-        // ５．右と左の＜＞(難しめ)(背景の画像が変更される)
-        // ６．額縁色変更(難しめ)(ラジオボタンで商品画像の額縁の色を変更する)
-    } else {
-        echo '製品IDが指定されていません。';
+    let currentIndex = 0;
+
+    function changeImage(delta) {
+        currentIndex += delta;
+
+        if (currentIndex < 0) {
+            currentIndex = images.length - 1;
+        } else if (currentIndex >= images.length) {
+            currentIndex = 0;
+        }
+
+        const imageContainer = document.getElementById("imageContainer");
+        imageContainer.innerHTML = `<img alt="image" src="${images[currentIndex]}" width="600" height="450">`;
+    }
+    
+    function previewImage() {
+        const fileInput = document.getElementById('imageInput');
+        const imageContainer = document.getElementById('imageContainer');
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            imageContainer.innerHTML = `<img alt="image" src="${e.target.result}" width="600" height="450">`;
+        };
+
+        reader.readAsDataURL(file);
     }
 
-    require './common/footer.php';
-?>
+    document.addEventListener("DOMContentLoaded", function() {
+        const frameSelectionForm = document.getElementById('frameSelectionForm');
+        const imageContainer = document.getElementById('p');
+
+        frameSelectionForm.addEventListener('change', function(event) {
+            if (event.target.name === 'student') {
+                const frameColor = event.target.value;
+                imageContainer.style.border = `10px solid ${frameColor}`;
+            }
+        });
+    });
+</script>
+</body>
+</html>
+<?php require './common/footer.php';?>
