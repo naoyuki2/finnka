@@ -33,7 +33,7 @@
                                         echo'<p class="card-text">金額：',$result['price'],'円</p>';
                                         echo '<form action="cartDelete.php" method="post">';
                                             echo '<input type="hidden" name="cart_detail_id" value=',$row['cart_detail_id'],'>';
-                                            echo '<button type="submit">削除</button>';
+                                            echo '<button type="submit" class="btn btn-danger">削除</button>';
                                         echo '</form>';
                                     echo '</div>';
                                 echo '</div>';
@@ -48,7 +48,12 @@
         }
         echo '</div>';
         echo '</div>';
-        echo '<a href="orderInput.php">購入する</a>';
+        echo '<div class="container text-center">';
+        echo '<div class="row">';
+        echo '<div class="mb-3"></div>';
+        echo '<a href="orderInput.php"><button type="button" class="btn btn-success">購入する</button></a>';
+        echo '</div>';
+        echo '</div>';
     }else{
         echo '<h1>カートに商品が入っていないようです</h1>';
     }
