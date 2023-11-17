@@ -1,8 +1,15 @@
 <?php
-session_start();
-require './common/login-header.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+<?php
+require './common/header.php';
 
-
+if (isset($_SESSION['error_message'])) {
+    echo '<p class="error-message">' . $_SESSION['error_message'] . '</p>';
+    unset($_SESSION['error_message']); // エラーメッセージを表示したら、セッション変数から削除します
+}
 
 $user_name=$password1=$password2='';
 $error = '';
@@ -11,14 +18,6 @@ if (isset($_SESSION['user'])) {
     $password1 = $_SESSION['user']['password'];
 }
 echo '<div class="login-container">';
-    if (isset($_SESSION['error_message'])) {
-        echo '<p class="error-message">' . $_SESSION['error_message'] . '</p>';
-        unset($_SESSION['error_message']); // エラーメッセージを表示したら、セッション変数から削除します
-    }
-
-    echo '<form action="login-input.php" method="post">';
-    echo '<input type="submit" value="戻る">';
-    echo '</form>';
 
     echo '<form action="new-login-output.php" method="post">';
 
@@ -41,17 +40,37 @@ echo '<div class="login-container">';
             echo '<label for="password">パスワード確認</label>';
             echo '<input class="form-control" id="pass2" type="password" name="password2" value="', $password2, '">';
         echo '</div>';
-
+        
         echo '<div class="form-group show-password-label">';
             echo '<label>パスワードを表示する</label>';
             echo '<input type="checkbox" id="show_password2">';
         echo '</div>';
 
-
-        echo '<input type="submit" value="登録">';
+        echo '<div class="container">';
+        echo '<div class="row">';
+        echo '<div class="col-1"></div>';
+        echo '<div class="col-4">';
+        echo '<a href="login-input"><button type="submit" class="btn btn-outline-secondary">戻る</button></a>';
         echo '</div>';
-    echo '</form>';
+        echo '<div class="col-2"></div>';
+        echo '<div class="col-4">';
+        echo '<button type="submit" class="btn btn-success">登録</button>';
+        echo '</form>';
+        echo '</div>';
+        echo '<div class="col-1"></div>';
+        echo '</div>';
+        echo '</div>';
+
+        
+
+    
+
+        echo '</div>';
+        
+        
 echo '</div>';
+
+    
 ?>
 
 
