@@ -1,23 +1,37 @@
-<?php session_start(); 
-    require './common/db-connect.php'; 
+<?php
+session_start();
 
-    uset($_SESSION['user-info-error']);
+require './common/db-connect.php';
+$pdo = new PDO ($connect,USER,PASS);
+// ユーザー認証の処理
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $userName = $_POST['user_name'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-    $pdo = new PDO($connect, USER, PASS); 
-    $sql = $pdo->prepare('select * from user where user_name=?');
-    $sql->execute([$_POST['user_name']]);
-    $row = $sql->fetch(); // 一致するユーザーが1つだけであることを仮定
-    
-    if($row){
-        $passwordInput = $_POST['password'].$row['salt'];
+    // データベースでのユーザー情報の取得
+    $sql = $pdo->prepare("SELECT * FROM user WHERE user_name = ?");
+    $sql->execute([$userName]);
+    $row = $sql->fetch();
+
+    if ($row) {
+        // パスワードの検証
+        $passwordInput = $password . $row['salt'];
         if (password_verify($passwordInput, $row['hash'])) {
-            header('Location:user-info-login-input.php');
-        }else{
+            // 認証成功: ユーザー情報をセッションに保存
+            $_SESSION['user_name'] = $userName;
+
+            header('Location: userhenkou-input.php');
+            exit;
+        } else {
+            // 認証失敗: エラーメッセージをセッションに保存
             $_SESSION['user-info-error'] = 'ログイン名またはパスワードが違います。';
-            header('Location:user-info-login-input.php');
+            header('Location: user-info-login-input.php');
+            exit;
         }
-    }else {
-        $_SESSION['user-info-error'] = 'ログイン名またはパスワードが違います。';
-        header('Location:user-info-login-input.php');
+    } else {
+        $_SESSION['user-info-error'] = 'ユーザーが見つかりません。';
+        header('Location: user-info-login-input.php');
+        exit;
     }
+}
 ?>
