@@ -15,7 +15,7 @@ $pdo = new PDO($connect, USER, PASS);
 
     echo '<div class="container">';
     echo '<div class="row">';
-    echo '<h1 class="display-6 text-center bg-light p-2 mt-2 rounded-pill">',$product['user_name'],'さんの注文履歴：</h1>';
+    echo '<h1 class="display-6 text-center bg-light p-2 mt-2 rounded-pill">',$product['user_name'],'さんの注文履歴</h1>';
 
     foreach($sales as $row){
         // echo $row['sell_id'];
@@ -37,16 +37,19 @@ $pdo = new PDO($connect, USER, PASS);
 
             // echo $author['author_name'];
 
+            $original_date = $row['buy_date'];
+            $new_format_date = date("n月j日", strtotime($original_date));
+
             echo '<div class="col-12 col-md-6">';
                 echo '<div class="card">';
                     echo '<div class="row g-0">';
                         echo '<div class="col-7 col-sm-8">';
                             echo '<div class="card-body">';
                                 echo'<h5 class="card-title">',$product['title'],'</h5>';
-                                echo'<p class="card-text">作者：',$author['author_name'],'</p>';
                                 echo'<p class="card-text">数量：',$salseDetail['quantity'],'個</p>';
                                 echo'<p class="card-text">金額：',$product['price'],'円</p>';
-                                echo '<form action="cartDelete.php" method="post">';
+                                echo'<p class="card-text">購入日時：',$new_format_date,'</p>';
+                                echo '<form action="cartDelete.php" me  thod="post">';
                                 echo '</form>';
                             echo '</div>';
                         echo '</div>';
