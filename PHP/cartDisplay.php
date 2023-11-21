@@ -86,7 +86,45 @@
         echo '</div>';
         echo '</div>';
     }else{
-        echo '<h1>カートに商品が入っていないようです</h1>';
+        echo '<div class="container text-center">';
+        echo '<div class="mb-5"></div>';
+        echo '<h2>カートに商品が入っていないようです</h2>';
+        echo '<div class="mb-4"></div>';
+        echo "<h3>そんなあなたにおすすめの絵</h3>";
+        echo '<div class="mb-3"></div>';
+
+        $pdo = new PDO($connect, USER, PASS);
+        $sql = $pdo->query('select * from products ORDER BY RAND() LIMIT 1');
+        foreach ($sql as $row) {
+            echo '<div class="container d-flex justify-content-center mb-5">';
+            echo '<div class="col-6 col-sm-4">';
+            echo '<div class="card">';
+            echo '<div class="frame">';
+            echo '<img
+                src=',$row['img_pass'],'
+                class="card-img-top"
+                alt="card-img-top"
+            />';
+        
+            echo '<a href="productDetail.php?product_id=' . $row['product_id'] . '">';
+            echo '<div class="card-body">
+                    <h5 class="card-title">',$row['title'],'</h5>
+                    <p class="card-text">
+                        ￥',$row['price'],'
+                    </p>
+                  </div>';
+            echo '</a>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+        }
+        echo '</div>';
     }
     
     require './common/footer.php';
