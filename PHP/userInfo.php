@@ -52,7 +52,7 @@ require './common/db-connect.php';
 
           <div class="col-6 col-lg-10 mb-4 mb-lg-3">
             <a href="logout.php">
-              <button type="submit" class="btn btn-outline-dark userinfoButton">
+              <button type="submit" class="btn btn-outline-dark userinfoButton bg-light">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i><br>ログアウト
               </button>
             </a>
