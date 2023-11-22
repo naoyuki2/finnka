@@ -14,6 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare("SELECT * FROM user WHERE user_name = ?");
         $stmt->execute([$usernameInput]);
         $result = $stmt->fetch();
+
+        if(empty($result)){
+            $_SESSION['errorMessage'] = "ユーザー名またはパスワードが間違っています。";
+            header('Location: login-input.php');
+        }
         
         $passwordInput = $_POST['password'].$result['salt'];
 

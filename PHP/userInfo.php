@@ -7,36 +7,73 @@ require './common/db-connect.php';
     $sql=$pdo->prepare('select * from user where user_id=?');
     $sql->execute([$_SESSION['id']]);
     $user = $sql->fetch();
+?>
+<div class="container text-center">
+  <div class="row">
 
-    echo '<div class="container">';
-        echo '<div class="row">';
-            echo '<div class="col-10">';
-                echo '<div class="card">';
-                    echo '<div class="row g-0">';
-                        echo '<div class="col-12 col-lg-4">';
-                            echo'<img src=',$user['icon_img'],' class="img-fluid" alt="card-horizontal-image">';
-                        echo '</div>';
-                        echo '<div class="col-12 col-lg-8">';
-                            echo '<div class="card-body">';
-                            echo '<form action="user-info-login-input.php" method="post">';
-                            echo '<tr><td><input type="submit" class="btn btn-secondary" value="ユーザー情報変更"></td><td>';
-                            echo '</form>';
-                            echo '<form action="accountDelete1.php" method="post">';
-                            echo '<input type="submit" class="btn btn-secondary" value="アカウント削除"></td><td>';
-                            echo '</form>';
-                            echo '<form action="注文履歴照会.php" method="post">';
-                            echo '<input type="submit" class="btn btn-secondary" value="注文履歴照会"></td><td>';
-                            echo '</form>';
-                            echo '<form action="logout.php" method="post">';
-                            echo '<input type="submit" class="btn btn-secondary" value="ログアウト"></td></tr>';
-                            echo '</form>';
-                            echo '</div>';
-                        echo '</div>';
-                    echo '</div>';
-                echo '</div>';
-            echo '</div>';
-        echo '</div>';
-    echo '</div>';
+    <div class="col-12 col-lg-4">
 
-require './common/footer.php';?>
+        <?php
+    echo '<img src=',$user['icon_img'],' class="img-fluid" alt="card-horizontal-image">';
+    ?>
 
+      <div class="mb-5"></div>
+    </div>
+
+    <div class="col-12 col-lg-8">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-6 col-lg-10 mb-4 mb-lg-3">
+            <a href="user-info-login-input.php">
+              <button type="submit" class="btn btn-outline-dark userinfoButton bg-light">
+                <i class="fa-solid fa-user-pen"></i><br>個人情報変更
+              </button>
+            </a>
+          </div>
+
+            <div class="col-6 col-lg-10 mb-4 mb-lg-3">
+            <a href="orderHistory.php">
+              <button type="submit" class="btn btn-outline-dark userinfoButton bg-light">
+                <i class="fa-solid fa-bag-shopping"></i><br>注文履歴照会
+              </button>
+            </a>
+          </div>
+
+          <div class="col-6 col-lg-10 mb-4 mb-lg-3">
+            <a href="accountDelete1.php">
+              <button type="submit" class="btn btn-outline-dark userinfoButton bg-light">
+                <i class="fas fa-user-slash"></i><br>アカウント削除
+              </button>
+            </a>
+          </div>
+
+          
+
+          <div class="col-6 col-lg-10 mb-4 mb-lg-3">
+            <a href="logout.php">
+              <button type="submit" class="btn btn-outline-dark userinfoButton bg-light">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i><br>ログアウト
+              </button>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .userinfoButton {
+    width: 70%;
+    padding: 10px;
+  }
+
+  .userinfoButton i {
+    font-size: 1.8em;
+  }
+</style>
+
+<?php require './common/footer.php';?>

@@ -18,7 +18,11 @@ if(isset($_SESSION['user'])){
     $sql->execute([$_POST['user_name']]);
 }
 
-if(empty($sql->fetchAll())){
+if(strlen($_POST['password']) > 20 || strlen($_POST['password2']) > 20) {
+    $_SESSION['error_message'] = 'パスワードは20文字以内に収めてください';
+    header('Location: new-login-input.php');
+    exit;
+}else if(empty($sql->fetchAll())){
     if($_POST['password'] !== $_POST['password2']) {
         $_SESSION['error_message'] = 'パスワードが一致しません。';
         header('Location: new-login-input.php');
@@ -28,7 +32,7 @@ if(empty($sql->fetchAll())){
         header('Location: new-login-input.php');
         exit;
     } else {
-        $sql=$pdo->prepare('insert into user values(null,?,?,?,?,0)');
+        $sql=$pdo->prepare('insert into user values(null,?,?,0,?,?)');
         $sql->execute([
         $_POST['user_name'],"../uploads/default_icon.jpg",$password_hash,$salt]);
 

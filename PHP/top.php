@@ -46,7 +46,6 @@ foreach($sql as $row){
 </div>
 
 </table>
-<a href="productsInsertInput.php">商品登録</a>
 <?php
     require './common/footer.php';
 ?>

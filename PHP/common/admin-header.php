@@ -1,3 +1,14 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if(!isset($_SESSION['id']) || $_SESSION['id'] === ''){
+  header('Location: login-input.php');
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -17,11 +28,41 @@
     <title>finnka</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <div class="container-fluid">
-            <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="admin-top.php">
+      <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse show" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <div class="row">
+          <div class="col-auto">
+            <a href="productsInsertInput.php">
+              <button type="submit" class="btn btn-secondary">
+              <i class="fa-solid fa-check"></i> 商品登録
+              </button>
+            </a>
+          </div>
+          <div class="col-auto">
+            <a href="logout.php">
+              <button type="submit" class="btn btn-secondary">
+              <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+              </button>
+            </a>
+          </div>
         </div>
-        <a href="adminLogin.php">
-          ログインに戻る
-        </a>
-    </nav>
+      </div>
+    </div>
+  </div>
+</nav>
