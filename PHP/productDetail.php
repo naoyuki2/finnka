@@ -20,7 +20,7 @@ if (isset($_GET['product_id'])) {
     $author_sql->execute([$product_row['author_id']]);
     $author_row = $author_sql->fetch();
 
-    if ($product_row && $stock_row) {
+    if ($product_row && $stock_row['quantity'] > 0) {
         echo '<form action="cartInput.php" method="post">';
         echo '<div class="container">';
             echo '<div class="row">';
