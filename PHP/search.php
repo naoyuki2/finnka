@@ -57,8 +57,6 @@ $dbAuthor = $pdo->query('select * from author');
                         ?>
                         <span class="input-group-text">円以下</span>
                     </div>
-
-
                     <div class="container text-center">
                         <div class="mb-4"></div>
                         <button type="submit" class="btn btn-danger"><i class="fa-solid fa-magnifying-glass"></i>　検索　</button>
