@@ -1,20 +1,8 @@
 <?php
-    require './common/header.php';
+    require './common/admin-header.php';
     require './common/db-connect.php';
-    // if(empty($_SESSION['id'])){
-    //     echo "ユーザーIDが入っていません";
-    // }else{
-    //     echo $_SESSION['id'];
-    // }
 ?>
 
-<!-- <p>おすすめ商品</p>
-<img src="" alt="おすすめ商品">
-<button type="submit" name="left"><</button>
-<img src="" alt="おすすめ商品">
-<button type="submit" name="right">></button>
-<img src="" alt="おすすめ商品">
-<p>すべての商品</p> -->
 <div class="container text-center">
       <div class="row">
 <?php
@@ -30,7 +18,7 @@ foreach($sql as $row){
     alt="card-img-top"
     />';
     echo '</div>';
-    echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
+    echo '<a href="admin-edit-input.php?product_id='.$row['product_id'].'">';
     echo '<div class="card-body">
     <h5 class="card-title">',$row['title'],'</h5>
     <p class="card-text">
@@ -45,7 +33,6 @@ foreach($sql as $row){
     </div>
 </div>
 
-</table>
 <?php
     require './common/footer.php';
 ?>

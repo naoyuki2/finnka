@@ -1,7 +1,4 @@
 <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
 require './common/header.php';
 require './common/db-connect.php';
 
@@ -23,7 +20,7 @@ if (isset($_GET['product_id'])) {
     $author_sql->execute([$product_row['author_id']]);
     $author_row = $author_sql->fetch();
 
-    if ($product_row && $stock_row) {
+    if ($product_row && $stock_row['quantity'] > 0) {
         echo '<form action="cartInput.php" method="post">';
         echo '<div class="container">';
             echo '<div class="row">';
@@ -65,8 +62,8 @@ if (isset($_GET['product_id'])) {
                     echo '</div>';
                 echo '</div>';
                 echo '</div>';
-                echo'<button type="button" class="btn btn-secondary">プレビュー</button>';
-                echo '<input type="hidden" name="product_id" value=',$product_id,'>';
+                echo '<a href="productPreview.php?product_id='.$product_id.'"><button type="button" class="btn btn-secondary">プレビュー</button></a>';
+                echo'<input type="hidden" name="product_id" value=',$product_id,'>';
                 echo'<input class="btn btn-secondary" type="submit" name="action" value="カートに入れる">';
                 echo'<input class="btn btn-secondary" type="submit" name="action" value="今すぐ購入">';
                 echo '</form>';

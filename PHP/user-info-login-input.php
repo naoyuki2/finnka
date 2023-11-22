@@ -1,6 +1,7 @@
 <?php
  require './common/header.php'; 
 
+
     if(empty($_SESSION['user-info-error'])){
         $errorMessage = "";
     }else{

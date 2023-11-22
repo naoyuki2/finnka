@@ -30,7 +30,7 @@ if(!isset($_SESSION['id']) || $_SESSION['id'] === ''){
   <body>
   <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="top.php">
+    <a class="navbar-brand" href="admin-top.php">
       <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
     </a>
     <button
@@ -48,23 +48,16 @@ if(!isset($_SESSION['id']) || $_SESSION['id'] === ''){
       <div class="navbar-nav ms-auto">
         <div class="row">
           <div class="col-auto">
-            <a href="search.php">
+            <a href="productsInsertInput.php">
               <button type="submit" class="btn btn-secondary">
-                <i class="fas fa-search"></i> 検索
+              <i class="fa-solid fa-check"></i> 商品登録
               </button>
             </a>
           </div>
           <div class="col-auto">
-            <a href="cartDisplay.php">
+            <a href="logout.php">
               <button type="submit" class="btn btn-secondary">
-                <i class="fa-solid fa-cart-shopping"></i> カート
-              </button>
-            </a>
-          </div>
-          <div class="col-auto">
-            <a href="userInfo.php">
-              <button type="submit" class="btn btn-secondary">
-                <i class="fa-solid fa-user"></i> ユーザー
+              <i class="fa-solid fa-right-from-bracket"></i> ログアウト
               </button>
             </a>
           </div>

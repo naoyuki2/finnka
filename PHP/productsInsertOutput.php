@@ -2,38 +2,42 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // ファイルがアップロードされていることを確認
-        if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] == 0) {
-            $uploaded_file = $_FILES['product_image'];
+    $uploaded_file = $_FILES['product_image'];
+    if(!empty($uploaded_file['name'])){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // ファイルがアップロードされていることを確認
+            if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] == 0) {
+                $uploaded_file = $_FILES['product_image'];
 
-            // ファイルの拡張子を確認
-            $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
-            $file_extension = pathinfo($uploaded_file['name'], PATHINFO_EXTENSION);
-            if (in_array($file_extension, $allowed_extensions)) {
-                // 保存先のパスを指定
-                $destination = '../uploads/' . $uploaded_file['name'];
+                // ファイルの拡張子を確認
+                $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
+                $file_extension = pathinfo($uploaded_file['name'], PATHINFO_EXTENSION);
+                if (in_array($file_extension, $allowed_extensions)) {
+                    // 保存先のパスを指定
+                    $destination = '../uploads/' . $uploaded_file['name'];
 
-                // ファイルを指定した場所に移動
-                if (!file_exists('../uploads')) {
-                    mkdir('uploads', 0777, true);
-                }            
-                if (move_uploaded_file($uploaded_file['tmp_name'], $destination)) {
-                    $_SESSION['insertMessage'] = "File uploaded successfully.";
+                    // ファイルを指定した場所に移動
+                    if (!file_exists('../uploads')) {
+                        mkdir('uploads', 0777, true);
+                    }            
+                    if (move_uploaded_file($uploaded_file['tmp_name'], $destination)) {
+                        $_SESSION['insertMessage'] = "File uploaded successfully.";
+                    } else {
+                        $_SESSION['insertMessage'] = "Failed to upload file.";
+                        header('Location: productsInsertInput.php');
+                    }
                 } else {
-                    $_SESSION['insertMessage'] = "Failed to upload file.";
+                    $_SESSION['insertMessage'] = "Invalid file extension.";
                     header('Location: productsInsertInput.php');
                 }
             } else {
-                $_SESSION['insertMessage'] = "Invalid file extension.";
+                $_SESSION['insertMessage'] = "No file uploaded.";
                 header('Location: productsInsertInput.php');
             }
-        } else {
-            $_SESSION['insertMessage'] = "No file uploaded.";
-            header('Location: productsInsertInput.php');
         }
+    }else{
+        header('Location: productsInsertInput.php');
     }
-
     require './common/db-connect.php';
 
     $pdo=new PDO($connect, USER, PASS);
@@ -70,6 +74,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
     if(empty($_POST['title']) || empty($category) || empty($author) || empty($_POST['thought']) || empty($_POST['price']) || empty($destination)){
         $_SESSION['insertMessage'] = "未入力の項目があります";
+        header('Location: productsInsertInput.php');
     }
 
     $sql=$pdo->prepare('insert into products values(null,?,?,?,?,?,?,0)');
@@ -81,6 +86,17 @@ if (session_status() == PHP_SESSION_NONE) {
         $_POST['price'],
         $destination
     ]);
+
+    $stmt=$pdo->prepare('select * from products where title = ?');
+    $stmt->execute([$_POST['title']]);
+    $product_id = $stmt->fetch();
+
+    $sql=$pdo->prepare('insert into stock values(null,?,?)');
+    $sql->execute([
+        $product_id['product_id'],
+        $_POST['stock']
+    ]);
+
     $_SESSION['dbMessage'] = "DB inserted successfully.";
     header('Location: productsInsertInput.php');
     exit;

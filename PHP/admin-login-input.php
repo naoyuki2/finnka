@@ -10,8 +10,8 @@ if (isset($_SESSION['errorMessage'])) {
 ?>
 
 <div class="login-container">
-    <h2>ログイン</h2>
-    <form action="login-output.php" method="post">
+    <h2>管理者ログイン</h2>
+    <form action="admin-login-output.php" method="post">
         <div class="form-group">
             <label for="username">ユーザーネーム</label>
             <input type="text" id="username" name="username" class="form-control" required>
@@ -24,12 +24,11 @@ if (isset($_SESSION['errorMessage'])) {
             <label>パスワードを表示する</label>
             <input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()">
         </div>
-        <button type="submit" name="login" class="btn">ログイン</button>
+        <button type="submit" name="login" class="btn">管理者としてログイン</button>
     </form>
     <?php if ($errorMessage): ?>
     <p class="error-message"><?= $errorMessage ?></p>
     <?php endif; ?>
-    <p><a href="new-login-input.php">アカウントをお持ちではない方</a></p>
 </div>
 
 <style>

@@ -1,8 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
- require './common/header.php';
+ require './common/admin-header.php';
  require './common/db-connect.php';?>
 
 <?php
@@ -57,6 +54,10 @@ if (session_status() == PHP_SESSION_NONE) {
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="input-group-lg-example">金額</span>
                     <input name="price" type="text" class="form-control" aria-label="Large input group" aria-describedby="input-group-lg">
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="input-group-lg-example">在庫</span>
+                    <input name="stock" type="number" class="form-control" aria-label="Large input group" aria-describedby="input-group-lg">
                 </div>
                 <input type="submit" class="btn btn-primary" value="商品を登録する" name="submit">
             </div>
