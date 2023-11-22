@@ -41,11 +41,6 @@ echo '<div class="login-container">';
             echo '<input type="checkbox" id="show_password2">';
         echo '</div>';
 
-        if (isset($_SESSION['error_message'])) {
-            echo '<p class="error-message">' . $_SESSION['error_message'] . '</p>';
-            unset($_SESSION['error_message']); // エラーメッセージを表示したら、セッション変数から削除します
-        }
-
         echo '<div class="container">';
         echo '<div class="row">';
         echo '<div class="col-1"></div>';
@@ -66,8 +61,6 @@ echo '<div class="login-container">';
     
 
         echo '</div>';
-        
-        
 echo '</div>';
 
     

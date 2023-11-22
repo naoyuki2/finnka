@@ -19,7 +19,7 @@ if(isset($_SESSION['user'])){
 }
 
 if(strlen($_POST['password']) > 20 || strlen($_POST['password2']) > 20) {
-    $_SESSION['error_message'] = 'パスワードは20文字以内に収めてください';
+    $_SESSION['error_message'] = 'パスワードは２０文字以内に設定してください';
     header('Location: new-login-input.php');
     exit;
 }else if(empty($sql->fetchAll())){
