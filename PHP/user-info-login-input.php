@@ -5,6 +5,7 @@
         echo "";
     }else{
         echo $_SESSION['user-info-error'];
+        unset($_SESSION['user-info-error']);
     }
 ?>
 
