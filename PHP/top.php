@@ -23,7 +23,7 @@ $sql = $pdo->query('select * from products');
 foreach($sql as $row){
     echo '<div class="col-12 col-md-6 col-lg-4">';
     echo '<div class="card">';
-    echo '<div class="frame">';
+    echo '<div class="frame-beige">';
     echo '<img
     src=',$row['img_pass'],'
     class="card-img-top"

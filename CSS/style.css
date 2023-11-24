@@ -23,25 +23,62 @@ nav,
   margin: 5px 0;
 }
 
-.frame {
+.frame-beige {
   position: relative;
   border-top: 20px solid #b37d4d;
   border-right: 20px solid #b37d4d;
   border-bottom: 20px solid #d2ae7e;
   border-left: 20px solid #d2ae7e;
+
   box-shadow: inset 0 0 10px #000;
   display: inline-block;
-  z-index: 2; /* 追加 */
-}
-.frame img {
-  position: relative;
-  z-index: 1; /* 修正 */
+  z-index: 2;
 }
 
+.frame-black {
+  position: relative;
+  border-top: 20px solid #323232;
+  border-right: 20px solid #323232;
+  border-bottom: 20px solid #5f5f5f;
+  border-left: 20px solid #5f5f5f;
+
+  box-shadow: inset 0 0 10px #000;
+  display: inline-block;
+  z-index: 2;
+}
+
+.frame-white {
+  position: relative;
+  border-top: 20px solid #dcdcdc;
+  border-right: 20px solid #dcdcdc;
+  border-bottom: 20px solid #f8f8ff;
+  border-left: 20px solid #f8f8ff;
+
+  box-shadow: inset 0 0 10px #000;
+  display: inline-block;
+  z-index: 2;
+}
+
+.frame img {
+  position: relative;
+  z-index: 1;
+}
 .order {
   margin-top: 5px;
 }
 
 .order_button {
   background-color: #edeeee;
+}
+
+.black {
+  background-color: #5f5f5f;
+}
+
+.beige {
+  background-color: #d2ae7e;
+}
+
+.white {
+  background-color: #f8f8ff;
 }
