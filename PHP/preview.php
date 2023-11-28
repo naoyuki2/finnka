@@ -2,7 +2,7 @@
 <?php require './common/db-connect.php'; ?>
 
 
-<form action="商品詳細.php" method="post">
+<form action="productDetail.php" method="post">
     <input type="submit" value="戻る">
 </form>
 
@@ -75,6 +75,4 @@
         });
     });
 </script>
-</body>
-</html>
 <?php require './common/footer.php';?>
