@@ -14,13 +14,14 @@ if (isset($_GET['product_id'])) {
     $stock_sql = $pdo->prepare('SELECT quantity FROM stock WHERE product_id = ?');
     $stock_sql->execute([$product_id]);
     $stock_row = $stock_sql->fetch();
+    
 
 
     $author_sql = $pdo->prepare('SELECT author_name FROM author WHERE author_id = ?');
     $author_sql->execute([$product_row['author_id']]);
     $author_row = $author_sql->fetch();
 
-    if ($product_row && $stock_row['quantity'] > 0) {
+    if ($product_row && $stock_row) {
         echo '<form action="cartInput.php" method="post">';
         echo '<div class="container">';
             echo '<div class="row">';
@@ -37,14 +38,19 @@ if (isset($_GET['product_id'])) {
                                     echo '<p class="card-text fs-3">作者の思い：',$product_row['thought'],'</p>';
                                     echo '<p class="card-text fs-3">金額：',$product_row['price'],'円</p>';
 
-                                    echo '<div class="form-floating">';
+                                    if ($stock_row['quantity'] > 0) {
+                                        echo '<div class="form-floating">';
                                         echo '<select name="quantity" class="form-select fs-5" id="floatingSelect" aria-label="Floating label select example">';
                                         for ($i = 1; $i <= $stock_row['quantity']; $i++) {
                                             echo '<option value="', $i, '">', $i, '</option>';
                                         }
                                         echo '</select>';
                                         echo '<label for="floatingSelect">数量</label>';
-                                    echo '</div>';
+                                        echo '</div>';
+                                    } else {
+                                        echo '<p style="color:red; font-size: 1.2em;">この商品の在庫は現在ございません。</p>';
+                                    }
+                                    
                                     echo '<div m-2>';
                                         echo '<div class="btn-group" role="group" aria-label="Basic radio toggle button group">';
                                             echo '<input type="radio" class="btn-check radio black" name="btnGroupRadio" id="btnRadio1" autocomplete="off" checked="">';
@@ -57,9 +63,11 @@ if (isset($_GET['product_id'])) {
                                             echo '<label class="btn radio white" for="btnRadio3">WHITE</label>';
                                         echo '</div>';
                                         echo '<a href="productPreview.php?product_id='.$product_id.'"><button type="button" class="btn btn-secondary">プレビュー</button></a>';
-                                        echo'<input type="hidden" name="product_id" value=',$product_id,'>';
-                                        echo'<input class="btn btn-secondary" type="submit" name="action" value="カートに入れる">';
-                                        echo'<input class="btn btn-secondary" type="submit" name="action" value="今すぐ購入">';
+                                        if ($stock_row['quantity'] > 0) {
+                                            echo'<input type="hidden" name="product_id" value=',$product_id,'>';
+                                            echo'<input class="btn btn-secondary" type="submit" name="action" value="カートに入れる">';
+                                            echo'<input class="btn btn-secondary" type="submit" name="action" value="今すぐ購入">';
+                                        }
                                     echo '</div>';
                                 echo '</div>';
                             echo '</div>';
