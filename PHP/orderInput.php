@@ -167,11 +167,11 @@
     <div class="payment col-12 col-md-6">
       <div class="container">
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="payment" id="credit">
+          <input class="form-check-input" type="radio" name="payment" value="credit">
             クレジットカード決済
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="payment" id="conveni">
+          <input class="form-check-input" type="radio" name="payment" value="conveni">
             コンビニ決済
         </div>
       </div>
