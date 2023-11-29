@@ -99,27 +99,27 @@ if (isset($_GET['product_id'])) {
 ?>
 
 <script>
-    
     document.addEventListener('DOMContentLoaded', function() {
- var radios = document.querySelectorAll('input[type=radio]');
- radios.forEach(function(radio) {
-  radio.addEventListener('click', function() {
-      var frames = Array.from(document.querySelectorAll('.frame-beige, .frame-black, .frame-white'));
-      frames.forEach(function(frame) {
-          if (frame) {
-              frame.classList.remove('frame-black', 'frame-beige','frame-white');
-              if (radio.id === 'btnRadio1') {
-                frame.classList.add('frame-black');
-              } else if (radio.id === 'btnRadio2') {
-                frame.classList.add('frame-beige');
-              } else if (radio.id === 'btnRadio3') {
-                frame.classList.add('frame-white');
-              }
-          }
-      });
-  });
- });
-});
+    var radios = document.querySelectorAll('input[type=radio]');
+    radios.forEach(function(radio) {
+    radio.addEventListener('click', function() {
+        var frames = Array.from(document.querySelectorAll('.frame-beige, .frame-black, .frame-white'));
+        frames.forEach(function(frame) {
+            if (frame) {
+                frame.classList.remove('frame-black', 'frame-beige','frame-white');
+                if (radio.id === 'btnRadio1') {
+                    frame.classList.add('frame-black');
+                } else if (radio.id === 'btnRadio2') {
+                    frame.classList.add('frame-beige');
+                } else if (radio.id === 'btnRadio3') {
+                    frame.classList.add('frame-white');
+                }
+            }
+        });
+    });
+    });
+    });
+</script>
 
 <?php
     require './common/footer.php';
