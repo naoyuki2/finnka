@@ -17,11 +17,6 @@
     $cartDetail_result = $cartDetail->fetchAll();
     
     if(!empty($cartDetail_result)){
-        echo '<div class="container">';
-        echo '<div class="row">';
-        echo '<h1 class="display-6 text-center bg-light p-2 mt-2 rounded-pill">小計：',$totalPrice,'円</h1>';
-        echo '<a href="orderInput.php"><button type="button" class="btn btn-success">',$count,'点 購入する</button></a>';
-
         foreach($cartDetail_result as $row){
             $product=$pdo->prepare('select * from products where product_id = ?');
             $product->execute([$row['product_id']]);
@@ -44,7 +39,20 @@
 
             $count += $quantity;
             $totalPrice += $quantity * $product_row['price'];
+        }
   
+        echo '<div class="container d-flex flex-row-reverse mt-5">';;
+            echo '<a href="orderInput.php" class="btn btn-success p-2 align-self-center">',$count,'点 購入する</button></a>';
+            echo '<div class="col-1 col-md-1"></div>';
+            echo '<div class="col-6 col-md-3 align-self-center">';
+                echo '<h1 class="display-6 p-3 text-center border border-dark rounded">小計：',$totalPrice,'円</h1>';
+            echo '</div>';
+        echo '</div>';
+
+        echo '<div class="container mt-3">';
+        echo '<div class="row">';
+
+        foreach($cartDetail_result as $row){
                 echo '<div class="col-12 col-md-6">';
                     echo '<div class="card">';
                         echo '<div class="row g-0">';
@@ -61,7 +69,7 @@
                                         echo '</form>';
                                     echo '</div>';
                                 echo '</div>';
-                                
+
                                 echo '<div class="col-5 col-sm-4 d-flex align-items-center">';
                             echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
                                 echo'<img src=',$result['img_pass'],' class="img-fluid" alt="card-horizontal-image">';
@@ -75,8 +83,8 @@
         echo '</div>';
         echo '</div>';
         } else {
-            echo '<div class="card">';
-            echo '<div class="mb-5"></div>';
+            echo '<div class="container">';
+            echo '<div class="nothing p-4 my-5 rounded">';
             echo '<h2>カートに商品が入っていないようです</h2>';
             echo '<div class="mb-4"></div>';
             echo "<h3>そんなあなたにおすすめの絵</h3>";
@@ -107,8 +115,18 @@
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
+                echo '</div>';
             }
         }
-        
+        ?>
+
+        <style>
+            h1 {
+                background-color: rgba(255, 255, 255, 0.7);
+            }
+            .nothing {
+                background-color: rgba(255, 255, 255, 0.8);
+            }
+        <?php
         require './common/footer.php';
         ?>
