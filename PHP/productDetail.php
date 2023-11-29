@@ -120,3 +120,7 @@ if (isset($_GET['product_id'])) {
   });
  });
 });
+
+<?php
+    require './common/footer.php';
+?>
