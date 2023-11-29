@@ -82,3 +82,11 @@ nav,
 .white {
   background-color: #f8f8ff;
 }
+
+.cart_pay{
+  float: right;
+}
+
+.cartButton{
+  margin-right: 10px;
+}
