@@ -83,10 +83,15 @@ nav,
   background-color: #f8f8ff;
 }
 
-.cart_pay{
+.cart_pay {
   float: right;
 }
 
-.cartButton{
+.cartButton {
   margin-right: 10px;
+}
+
+.float-end {
+  margin-bottom: 4px;
+  margin-right: 12px;
 }
