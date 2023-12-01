@@ -17,11 +17,12 @@
             $sql->execute([$_SESSION['id']]);
             $cart_id = $sql->fetchColumn();
         }
-        $sql=$pdo->prepare('insert into cartDetails values(null,?,?,?)');
+        $sql=$pdo->prepare('insert into cartDetails values(null,?,?,?,?)');
         $sql->execute([
             $cart_id,
             $_POST['product_id'],
-            $_POST['quantity']
+            $_POST['quantity'],
+            $_POST['radioFrame']
         ]);
     if($_POST['action'] == 'カートに入れる'){
         header('Location:cartDisplay.php');
