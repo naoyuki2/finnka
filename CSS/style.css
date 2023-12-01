@@ -14,9 +14,8 @@ body {
   margin: 5px 0;
 }
 
-nav,
-.btn-secondary {
-  opacity: 0.7;
+nav {
+  opacity: 0.85;
 }
 
 .card {
