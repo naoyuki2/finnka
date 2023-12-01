@@ -27,6 +27,8 @@ if(!isset($_SESSION['id']) || $_SESSION['id'] === ''){
 
     <title>finnka</title>
   </head>
+  <div class="header-box"></div>
+  <header>
   <body>
   <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container-fluid">
@@ -66,3 +68,19 @@ if(!isset($_SESSION['id']) || $_SESSION['id'] === ''){
     </div>
   </div>
 </nav>
+</header>
+
+<style>
+  .header-box {
+  height: 85px;
+}
+
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0);
+    z-index: 100;
+    
+  }
+</style>

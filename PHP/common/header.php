@@ -27,8 +27,10 @@ if(!isset($_SESSION['id']) || $_SESSION['id'] === ''){
 
     <title>finnka</title>
   </head>
+  <div class="header-box"></div>
+  <header>
   <body>
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <nav class="navbar navbar-expand-sm navbar-light white">
   <div class="container-fluid">
     <a class="navbar-brand" href="top.php">
       <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
@@ -73,3 +75,19 @@ if(!isset($_SESSION['id']) || $_SESSION['id'] === ''){
     </div>
   </div>
 </nav>
+</header>
+
+<style>
+  .header-box {
+  height: 85px;
+}
+
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0);
+    z-index: 100;
+    
+  }
+</style>
