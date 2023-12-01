@@ -2,11 +2,6 @@
     require './common/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>お支払い完了</title>
     <style>
         .centered-container {
             display: flex;
@@ -34,8 +29,7 @@
             border-radius: 5px;
         }
     </style>
-</head>
-<body>
+    
     <div class="centered-container">
         <div class="payment-completed">
             <h1>お支払いが完了しました</h1>
@@ -46,7 +40,5 @@
     <?php
         require './common/footer.php';
     ?>
-</body>
-</html>
 
 

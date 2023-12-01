@@ -10,93 +10,60 @@
     $product = $stmt->fetch();
 ?>
 
-<?php echo '<a href=productDetail.php?product_id='.$product_id.'"><button>戻る</button></a>';?>
 
-<form action="preview2.php" method="post" id="imageForm">
-    <input type="button" value="<" onclick="changeImage(-1)">
-    <input type="button" value=">" onclick="changeImage(+1)">
-</form>
 
-<div class="container text-center">
+<div class="container">
     <div class="row">
-        <div class="col-12">
-            <?php echo '<div style="position: relative;">'; ?>
-                <p id="imageContainer" style="position: absolute; top: 0; left: 0;">
-                    <img class="img-fluid" alt="image" src="image/sample1.jpg">
-                </p>
-
-                <p id="p" style="position: absolute; top: 30; border: 10px solid transparent;">
-                    <?php echo '<img alt="image" src=',$product['img_pass'],' width="200" height="250">';?>
-                </p>
-            <?php echo '</div>'; ?>
+        <span class="col-1"></span>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-body">
+                    <div class="preview-frame" id="p" style="position: absolute;">
+                        <?php echo '<img class="image" src=',$product['img_pass'],'>';?>
+                    </div>
+                    <div id="carouselWithIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#carouselWithIndicators" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#carouselWithIndicators" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#carouselWithIndicators" data-bs-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                        <img src="../uploads/room1.jpg" class="d-block w-100" alt="Slide 1">
+                        </div>
+                        <div class="carousel-item">
+                        <img src="../uploads/room2.jpg" class="d-block w-100" alt="Slide 2">
+                        </div>
+                        <div class="carousel-item">
+                        <img src="../uploads/room3.jpg" class="d-block w-100" alt="Slide 3">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselWithIndicators" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselWithIndicators" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <form action="preview2.php" method="post" id="frameSelectionForm">
+                        額縁
+                        <input type="radio" name="student" value="#cfb85b">
+                        <input type="radio" name="student" value="#201d21">
+                        <input type="radio" name="student" value="#9e2020">
+                    </form>
+                    <?php echo '<a href=productDetail.php?product_id='.$product_id.'"><button>戻る</button></a>';?>
+                </div>
+            </div>
         </div>
+        <span class="col-1"></span>
     </div>
 </div>
 
-echo '<div class="col-12 col-md-6 col-lg-4">';
-    echo '<div class="card">';
-    echo '<div class="frame">';
-    echo '<img
-    src=',$row['img_pass'],'
-    class="card-img-top"
-    alt="card-img-top"
-    />';
-    echo '</div>';
-    echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
-    echo '<div class="card-body">
-    <h5 class="card-title">',$row['title'],'</h5>
-    <p class="card-text">
-    ￥',$row['price'],'
-    </p>
-    </div>';
-    echo '</a>';
-    echo '</div>';
-    echo '</div>';
-
-<form action="preview2.php" method="post" enctype="multipart/form-data" id="changeImageForm">
-    <input type="file" name="image" id="imageInput" onchange="previewImage()" style="display: none;">
-    <label for="imageInput" style="cursor: pointer;">画像を選択</label>
-</form>
-
-
-<form action="preview2.php" method="post" id="frameSelectionForm">
-    額縁
-    <input type="radio" name="student" value="#cfb85b">
-    <input type="radio" name="student" value="#201d21">
-    <input type="radio" name="student" value="#9e2020">
-</form>
-
 <script>
-    const images = ["../uploads/room1.jpg", "../uploads/room1.jpg", "../uploads/room1.jpg"];
-    
-    let currentIndex = 0;
-
-    function changeImage(delta) {
-        currentIndex += delta;
-
-        if (currentIndex < 0) {
-            currentIndex = images.length - 1;
-        } else if (currentIndex >= images.length) {
-            currentIndex = 0;
-        }
-
-        const imageContainer = document.getElementById("imageContainer");
-        imageContainer.innerHTML = `<img alt="image" src="${images[currentIndex]}" width="600" height="450">`;
-    }
-    
-    function previewImage() {
-        const fileInput = document.getElementById('imageInput');
-        const imageContainer = document.getElementById('imageContainer');
-        const file = fileInput.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            imageContainer.innerHTML = `<img alt="image" src="${e.target.result}" width="600" height="450">`;
-        };
-
-        reader.readAsDataURL(file);
-    }
-
     document.addEventListener("DOMContentLoaded", function() {
         const frameSelectionForm = document.getElementById('frameSelectionForm');
         const imageContainer = document.getElementById('p');
@@ -108,11 +75,28 @@ echo '<div class="col-12 col-md-6 col-lg-4">';
             }
         });
     });
-
-    document.addEventListener("DOMContentLoaded", function() {
-        changeImage(0);
-    });
 </script>
-</body>
-</html>
+
+<style>
+    .preview-frame {
+        margin-left:45%;
+        margin-top:15px;
+        border-top: 10px solid #b37d4d;
+        border-right: 10px solid #b37d4d;
+        border-bottom: 10px solid #d2ae7e;
+        border-left: 10px solid #d2ae7e;
+        box-shadow: inset 0 0 10px #000;
+        display: inline-block;
+        z-index: 2;
+        width: 40%; /* この行を追加 */
+        height: 40%; /* この行を追加 */
+    }
+    .image {
+        width: 100%; /* この行を変更 */
+        height: 100%; /* この行を変更 */
+    }
+    .preview-frame img {
+        z-index: 1;
+    }
+</style>
 <?php require './common/footer.php';?>
