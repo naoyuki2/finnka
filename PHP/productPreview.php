@@ -1,7 +1,7 @@
 <?php
- require './common/header.php'; 
- require './common/db-connect.php'; 
- $product_id = $_GET['product_id'];
+    require './common/header.php'; 
+    require './common/db-connect.php'; 
+    $product_id = $_GET['product_id'];
 
 
     $pdo = new PDO($connect,USER,PASS);
@@ -17,9 +17,24 @@
         <span class="col-1"></span>
         <div class="col-10">
             <div class="card">
-                <div class="card-body">
-                    <div class="preview-frame" id="p" style="position: absolute;">
-                        <?php echo '<img class="image" src=',$product['img_pass'],'>';?>
+            <div class="card-body">
+            <div class="card-header text-muted">
+                    <?php 
+                    echo '額縁カラー：';
+                        echo '<div class="btn-group" role="group" aria-label="Basic radio toggle button group">';
+                            echo '<input type="radio" class="btn-check radio black" name="btnGroupRadio" id="btnRadio1" autocomplete="off" checked="">';
+                            echo '<label class="btn radio black" for="btnRadio1">BLACK</label>';
+                            echo '<input type="radio" class="btn-check radio beige" name="btnGroupRadio" id="btnRadio2" autocomplete="off" checked="">';
+                            echo '<label class="btn radio beige" for="btnRadio2">BEIGE</label>';
+                            echo '<input type="radio" class="btn-check radio white" name="btnGroupRadio" id="btnRadio3" autocomplete="off" checked="">';
+                            echo '<label class="btn radio white" for="btnRadio3">WHITE</label>';
+                        echo '</div>';
+                        echo '<a href=productDetail.php?product_id='.$product_id.'"><button class="btn btn-secondary">戻る</button></a>';
+                    echo '</div>';
+                    ?>
+                </div>
+                    <div class="preview frame-beige" id="p" style="position: absolute;">
+                        <?php echo '<img class="image img-fluid" src=',$product['img_pass'],'>';?>
                     </div>
                     <div id="carouselWithIndicators" class="carousel slide" data-bs-ride="carousel">
                     <ol class="carousel-indicators">
@@ -48,15 +63,6 @@
                     </a>
                     </div>
                 </div>
-                <div class="card-footer text-muted">
-                    <form action="preview2.php" method="post" id="frameSelectionForm">
-                        額縁
-                        <input type="radio" name="student" value="#cfb85b">
-                        <input type="radio" name="student" value="#201d21">
-                        <input type="radio" name="student" value="#9e2020">
-                    </form>
-                    <?php echo '<a href=productDetail.php?product_id='.$product_id.'"><button>戻る</button></a>';?>
-                </div>
             </div>
         </div>
         <span class="col-1"></span>
@@ -64,38 +70,43 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const frameSelectionForm = document.getElementById('frameSelectionForm');
-        const imageContainer = document.getElementById('p');
-
-        frameSelectionForm.addEventListener('change', function(event) {
-            if (event.target.name === 'student') {
-                const frameColor = event.target.value;
-                imageContainer.style.border = `10px solid ${frameColor}`;
-            }
-        });
-    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+ var radios = document.querySelectorAll('input[type=radio]');
+ radios.forEach(function(radio) {
+  radio.addEventListener('click', function() {
+      var frames = Array.from(document.querySelectorAll('.frame-beige, .frame-black, .frame-white'));
+      frames.forEach(function(frame) {
+          if (frame) {
+              frame.classList.remove('frame-black', 'frame-beige','frame-white');
+              if (radio.id === 'btnRadio1') {
+                frame.classList.add('frame-black');
+              } else if (radio.id === 'btnRadio2') {
+                frame.classList.add('frame-beige');
+              } else if (radio.id === 'btnRadio3') {
+                frame.classList.add('frame-white');
+              }
+          }
+      });
+  });
+ });
+});
 </script>
 
 <style>
-    .preview-frame {
-        margin-left:45%;
-        margin-top:15px;
-        border-top: 10px solid #b37d4d;
-        border-right: 10px solid #b37d4d;
-        border-bottom: 10px solid #d2ae7e;
-        border-left: 10px solid #d2ae7e;
-        box-shadow: inset 0 0 10px #000;
+    .preview {
         display: inline-block;
         z-index: 2;
-        width: 40%; /* この行を追加 */
-        height: 40%; /* この行を追加 */
+        width: 40%;
+        height: 40%;
+        margin-top: 14%;
+        margin-left: 46%;
     }
     .image {
-        width: 100%; /* この行を変更 */
-        height: 100%; /* この行を変更 */
+        width: 100%;
+        height: 100%;
     }
-    .preview-frame img {
+    .preview img {
         z-index: 1;
     }
 </style>
