@@ -56,11 +56,11 @@ if (isset($_GET['product_id'])) {
                                     echo '<div m-2>';
                                     echo '額縁カラー：';
                                         echo '<div class="btn-group" role="group" aria-label="Basic radio toggle button group">';
-                                            echo '<input type="radio" class="btn-check radio black" name="btnGroupRadio" id="btnRadio1" autocomplete="off" checked="">';
+                                            echo '<input type="radio" class="btn-check radio black" name="radioFrame" id="btnRadio1" autocomplete="off" value="frame-black">';
                                             echo '<label class="btn radio black" for="btnRadio1">BLACK</label>';
-                                            echo '<input type="radio" class="btn-check radio beige" name="btnGroupRadio" id="btnRadio2" autocomplete="off" checked="">';
+                                            echo '<input type="radio" class="btn-check radio beige" name="radioFrame" id="btnRadio2" autocomplete="off" checked value="frame-beige">';
                                             echo '<label class="btn radio beige" for="btnRadio2">BEIGE</label>';
-                                            echo '<input type="radio" class="btn-check radio white" name="btnGroupRadio" id="btnRadio3" autocomplete="off" checked="">';
+                                            echo '<input type="radio" class="btn-check radio white" name="radioFrame" id="btnRadio3" autocomplete="off" value="frame-white">';
                                             echo '<label class="btn radio white" for="btnRadio3">WHITE</label>';
                                         echo '</div>';
                                         echo '<a href="productPreview.php?product_id='.$product_id.'"><button type="button" class="btn btn-secondary"><i class="fa-solid fa-images"></i>プレビュー</button></a>';

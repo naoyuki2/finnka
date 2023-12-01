@@ -22,12 +22,13 @@
  
         foreach ($cart_rows as $cart_row) {
  
-          $cartDetails_sql = $pdo->prepare("SELECT product_id, quantity FROM cartDetails WHERE cart_id=?");
+          $cartDetails_sql = $pdo->prepare("SELECT product_id, quantity, frame FROM cartDetails WHERE cart_id=?");
           $cartDetails_sql->execute([$cart_row['cart_id']]);
  
           while ($row = $cartDetails_sql->fetch()) {
             $product_id = $row['product_id'];
             $quantity = $row['quantity'];
+            $frame = $row['frame'];
  
             $product_sql = $pdo->prepare("SELECT * FROM products WHERE product_id = ?");
             $product_sql->execute([$product_id]);
@@ -48,7 +49,9 @@
                 <p class="card-text">金額：<?php echo $product_row['price'];?>円</p>
               </div>
             </div>
-            <div class="col-5 col-sm-4">
+
+            <div class="col-5 col-sm-4 <?php echo $frame;?>" >
+
               <img src="<?php echo $product_row['img_pass'];?>" class="img-fluid" alt="orderInput-image">
             </div>
           </div>

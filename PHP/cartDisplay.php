@@ -13,7 +13,6 @@
     $cartDetail_result = $cartDetail->fetchAll();
     echo '<div class="container">';
     echo '<div class="row">';
-
     if(!empty($cartDetail_result)){
         foreach($cartDetail_result as $row){
             $product=$pdo->prepare('select * from products where product_id = ?');
@@ -79,7 +78,7 @@
                                 echo '</div>';
                             echo '</div>';
                             
-                            echo '<div class="col-5 col-sm-4 d-flex align-items-center">';
+                            echo '<div class="cartFrame col-5 col-sm-4 d-flex align-items-center ',$row['frame'],'">';
                         echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
                             echo'<img src=',$result['img_pass'],' class="img-fluid" alt="card-horizontal-image">';
                             echo '</a>';
@@ -143,6 +142,14 @@
         }
         echo '</div>';
     }
+?>
 
+<style>
+    .cartFrame{
+        height: 0%;
+    }
+</style>
+
+<?php
     require './common/footer.php';
 ?>
