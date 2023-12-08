@@ -45,7 +45,7 @@ echo '<div class="login-container">';
         echo '<div class="row">';
         echo '<div class="col-1"></div>';
         echo '<div class="col-4">';
-        echo '<a href="login-input"><button type="submit" class="btn btn-outline-secondary">戻る</button></a>';
+        echo '<a href="login-input.php"><button type="button" class="btn btn-outline-secondary">戻る</button></a>';
         echo '</div>';
         echo '<div class="col-2"></div>';
         echo '<div class="col-4">';

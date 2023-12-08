@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="../CSS/accountDelete1.css">
 <?php
     require './common/header.php';
     require './common/db-connect.php';
-
-    
+?>
+    <link rel="stylesheet" href="../CSS/accountDelete1.css">
+<?php  
     echo "<div style='text-align:center'><h1>アカウント削除</h1>";
     echo "<p>注意</p>";
     echo "<p>アカウントを削除するとすべての<br>";
