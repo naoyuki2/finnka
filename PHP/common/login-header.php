@@ -19,9 +19,8 @@
   <body>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container-fluid">
-            <img class="logo" name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
-        </div>
-        <a href="admin-login-input.php">
-          管理者の方
+        <a class="navbar-brand" href="top.php">
+          <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
         </a>
+        </div>
     </nav>

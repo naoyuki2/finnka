@@ -57,7 +57,7 @@ if(!isset($_SESSION['id']) || $_SESSION['id'] === ''){
             </a>
           </div>
           <div class="col-auto">
-            <a href="logout.php">
+            <a href="admin-login-input.php">
               <button type="submit" class="btn btn-secondary">
               <i class="fa-solid fa-right-from-bracket"></i> ログアウト
               </button>
