@@ -49,9 +49,9 @@
                         <div class="carousel-item">
                         <img src="../uploads/room2.jpg" class="d-block w-100" alt="Slide 2">
                         </div>
-                        <div class="carousel-item">
+                        <!-- <div class="carousel-item">
                         <img src="../uploads/room3.jpg" class="d-block w-100" alt="Slide 3">
-                        </div>
+                        </div> -->
                     </div>
                     <a class="carousel-control-prev" href="#carouselWithIndicators" role="button" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
