@@ -20,7 +20,7 @@
   <body>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container-fluid">
-            <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
+            <img class="logo" name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
         </div>
         <a href="login-input.php">
           ログイン画面に戻る

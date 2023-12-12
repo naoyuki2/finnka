@@ -33,7 +33,7 @@ if(!isset($_SESSION['id']) || $_SESSION['id'] === ''){
   <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="admin-top.php">
-      <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
+      <img class="logo" name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
     </a>
     <button
       class="navbar-toggler"
