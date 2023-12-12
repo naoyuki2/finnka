@@ -19,6 +19,8 @@
   <body>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container-fluid">
-            <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
+        <a class="navbar-brand" href="top.php">
+          <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
+        </a>
         </div>
     </nav>
