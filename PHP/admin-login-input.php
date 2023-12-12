@@ -22,9 +22,6 @@
         <div class="container-fluid">
             <img name="logo" src="../CSS/finnkaLogo.jpg" alt="logo">
         </div>
-        <a href="login-input.php">
-          ログイン画面に戻る
-        </a>
     </nav>
 <?php
 

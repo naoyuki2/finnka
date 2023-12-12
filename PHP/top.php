@@ -1,5 +1,5 @@
 <?php
-    require './common/header.php';
+    require './common/top-header.php';
     require './common/db-connect.php';
     // if(empty($_SESSION['id'])){
     //     echo "ユーザーIDが入っていません";
@@ -16,7 +16,7 @@
 <img src="" alt="おすすめ商品">
 <p>すべての商品</p> -->
 <div class="container text-center">
-      <div class="row">
+    <div class="row">
 <?php
 $pdo = new PDO($connect, USER, PASS);
 $sql = $pdo->query('select * from products');
@@ -30,7 +30,8 @@ foreach($sql as $row){
     alt="card-img-top"
     />';
     echo '</div>';
-    echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
+    // echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
+    echo '<a href="redirect.php?product_id='.$row['product_id'].'">';
     echo '<div class="card-body">
     <h5 class="card-title">',$row['title'],'</h5>
     <p class="card-text">

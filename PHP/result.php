@@ -69,7 +69,7 @@
             class="card-img-top"
             alt="card-img-top"
             />';
-            echo '<a href="productDetail.php?product_id='.$row['product_id'].'">';
+            echo '<a href="redirect.php?product_id='.$row['product_id'].'">';
                     echo '<div class="card-body">
                         <h5 class="card-title">',$row['title'],'</h5>
                         <p class="card-text">
